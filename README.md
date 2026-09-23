@@ -16,22 +16,34 @@ A personal portfolio built with Next.js (App Router), TypeScript, Tailwind CSS v
 ```
 src/
   app/
-    (site)/           # the actual portfolio pages (share header/footer/etc.)
-      page.tsx         # home page — assembles all sections
-      music/           # "coming soon" music page
-      projects/[slug]/ # project detail pages
-      not-found.tsx    # custom 404
-      layout.tsx       # site chrome: header, footer, cursor, background
+    (site)/            # the actual portfolio pages (share header/footer/etc.)
+      page.tsx          # home — hero + links out to every other page
+      about/            # /about
+      skills/           # /skills
+      work/             # /work — project list (cards link to /projects/[slug])
+      ventures/         # /ventures
+      education/        # /education — includes the "View transcript" link
+      music/            # /music — "coming soon"
+      contact/          # /contact
+      projects/[slug]/  # project detail pages
+      not-found.tsx     # custom 404
+      layout.tsx        # site chrome: header, footer, cursor, background
     studio/[[...tool]]/ # embedded Sanity Studio — NOT wrapped in site chrome
+    transcript.pdf/      # route handler — proxies the transcript file from
+                          # Sanity, or a 404 with an explanation if none is set
     layout.tsx          # minimal root layout (fonts, theme provider only)
   components/
     layout/    # header, footer, cursor, scroll effects, theme toggle
     sections/  # Hero, About, Skills, Projects, Ventures, Education, Contact
+               # (each is a reusable component; every /page.tsx above just
+               # fetches its own data and renders the matching one)
     ui/        # shared building blocks (Reveal, TiltCard, MagneticButton, …)
   content/     # static fallback content (used until Sanity has real data)
   lib/content.ts  # merges live Sanity data with the static fallback
   sanity/      # Sanity schema, client, GROQ queries, Studio config
 ```
+
+Nav order (matches the order pages were built in): About → Skills → Work → Ventures → Education → Music → Contact.
 
 ### How content works
 
@@ -75,7 +87,7 @@ Everything below can be filled in from `/studio` once Sanity is set up — no co
 - [ ] **Skill Groups** → Frameworks, Tools, Currently Learning (Languages already has Python & C from CS50)
 - [ ] **Projects** → 4 placeholder projects: title, summary, overview, problem, approach, tech stack, GitHub URL, live URL, and optionally a cover image
 - [ ] **Ventures** → Apex Web Solution and Stratosphere website URLs
-- [ ] **Education** → transcript files, if you want them shown publicly (uploaded per entry, shown as a download link)
+- [ ] **Site Settings** → Transcript PDF — upload it here and it's served permanently at `sanketbhatt.com/transcript.pdf` (linked from the Education page). Replace the file any time to update that link everywhere; if it's ever removed, that URL shows a proper 404 explaining it's not available instead of breaking.
 
 ## Notes
 

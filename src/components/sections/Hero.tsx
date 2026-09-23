@@ -118,13 +118,13 @@ export function Hero({ name, taglines, shortIntro }: HeroProps) {
           className="mt-9 flex flex-wrap items-center gap-4"
         >
           <MagneticButton
-            href="#work"
+            href="/work"
             className="bg-foreground text-background hover:opacity-90"
           >
             View work
           </MagneticButton>
           <MagneticButton
-            href="#contact"
+            href="/contact"
             className="glass hover:border-accent"
           >
             <Mail size={15} />

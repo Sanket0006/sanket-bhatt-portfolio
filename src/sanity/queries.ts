@@ -16,6 +16,7 @@ export type SiteSettings = {
   };
   quickFacts: { label: string; value: string }[];
   formspreeId?: string;
+  transcript?: { asset?: { url?: string } } | null;
 };
 
 export type About = {
@@ -49,21 +50,16 @@ export type Venture = {
   href?: string;
 };
 
-export type TranscriptFile = {
-  label?: string;
-  asset?: { url?: string; originalFilename?: string };
-};
-
 export type EducationEntry = {
   title: string;
   org: string;
   period: string;
   description: string;
-  transcripts?: TranscriptFile[];
 };
 
 const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
-  name, role, taglines, shortIntro, email, social, quickFacts, formspreeId
+  name, role, taglines, shortIntro, email, social, quickFacts, formspreeId,
+  transcript{asset->{url}}
 }`;
 
 const ABOUT_QUERY = `*[_type == "about"][0]{
@@ -86,8 +82,7 @@ const SKILL_GROUPS_QUERY = `*[_type == "skillGroup"] | order(order asc){ title, 
 const VENTURES_QUERY = `*[_type == "venture"] | order(order asc){ name, role, description, href }`;
 
 const EDUCATION_QUERY = `*[_type == "educationEntry"] | order(order asc){
-  title, org, period, description,
-  transcripts[]{ label, asset->{url, originalFilename} }
+  title, org, period, description
 }`;
 
 async function safeFetch<T>(query: string, params: QueryParams = {}): Promise<T | null> {

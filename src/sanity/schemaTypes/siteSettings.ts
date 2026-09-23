@@ -56,5 +56,13 @@ export const siteSettings = defineType({
       type: "string",
       description: "From formspree.io — leave blank to show a not-configured note instead of the form.",
     }),
+    defineField({
+      name: "transcript",
+      title: "Transcript PDF",
+      type: "file",
+      options: { accept: "application/pdf" },
+      description:
+        "Shown at sanketbhatt.com/transcript.pdf — replace this file any time to update the link everywhere. If empty, that URL shows a 404 explaining it's not available yet.",
+    }),
   ],
 });

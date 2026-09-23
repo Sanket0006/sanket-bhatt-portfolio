@@ -42,7 +42,7 @@ export default async function ProjectPage({
     <article className="mx-auto max-w-3xl px-5 py-28 sm:px-8">
       <Reveal direction="up">
         <Link
-          href="/#work"
+          href="/work"
           className="mb-10 inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-foreground"
         >
           <ArrowLeft size={14} />

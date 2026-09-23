@@ -24,6 +24,7 @@ const DEFAULT_BIO_PARAGRAPHS = [
 
 export type MergedSite = typeof staticSite & {
   quickFacts: { label: string; value: string }[];
+  transcriptUrl: string | null;
 };
 
 /** Site-wide settings (name, taglines, email, socials, quick facts) — Sanity values win, static file fills any gaps. */
@@ -39,7 +40,14 @@ export async function getMergedSite(): Promise<MergedSite> {
     social: { ...staticSite.social, ...(s?.social ?? {}) },
     quickFacts: s?.quickFacts?.length ? s.quickFacts : staticSite.quickFacts,
     formspreeId: s?.formspreeId ?? staticSite.formspreeId,
+    transcriptUrl: s?.transcript?.asset?.url ?? null,
   };
+}
+
+/** Just the transcript file URL, used by the /transcript.pdf route handler. */
+export async function getTranscriptUrl(): Promise<string | null> {
+  const s = await getSiteSettings();
+  return s?.transcript?.asset?.url ?? null;
 }
 
 export type MergedAbout = {
@@ -89,5 +97,5 @@ export async function getMergedVentures(): Promise<Venture[]> {
 
 export async function getMergedEducation(): Promise<EducationEntry[]> {
   const e = await getEducation();
-  return e.length ? e : staticEducation.map((entry) => ({ ...entry, transcripts: [] }));
+  return e.length ? e : staticEducation;
 }
