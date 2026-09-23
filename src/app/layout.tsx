@@ -16,7 +16,7 @@ const spaceGrotesk = Space_Grotesk({
   display: "swap",
 });
 
-const siteUrl = "https://sanketbhatt.dev"; // [TODO: update once the custom domain is confirmed]
+const siteUrl = "https://www.sanketbhatt.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

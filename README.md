@@ -37,37 +37,26 @@ src/
 
 Every section fetches from Sanity first. If a document doesn't exist yet (or Sanity isn't configured at all), it falls back to the placeholder content in `src/content/*.ts` — so the site always renders something reasonable, and switches over to your real content automatically the moment you publish it in Studio. You should never need to touch component code to update text, projects, skills, etc. — only if you want to change layout or design.
 
-## Run locally
+## Workflow
 
-```bash
-npm install
-npm run dev
-```
+This project is managed entirely through GitHub → Vercel — no local dev server needed day-to-day. Push to `main`, Vercel builds and deploys automatically, content is edited live at `/studio` on the production domain.
 
-Opens at `http://localhost:3000`. The Studio is at `http://localhost:3000/studio`.
+(`npm install && npm run dev` still works locally if you ever want it — `http://localhost:3000`, Studio at `http://localhost:3000/studio` — it's just not the normal workflow here.)
 
 ## Setting up Sanity (do this once)
 
-The site works and looks complete without this — it just shows placeholder content until you do this.
+The site works and looks complete without this — it just shows placeholder content until you do this. Project already created: **Sanket Bhatt Portfolio**, project ID `188jezxf`, dataset `production`.
 
-1. **Create a free account** at [sanity.io](https://www.sanity.io) (no credit card required).
-2. **Create a project**: easiest way is running this from the project root —
-   ```bash
-   npx sanity@latest init
+1. **Add environment variables in Vercel** — Project Settings → Environment Variables:
    ```
-   - Choose **"Create new project"**, give it any name (e.g. "Sanket Bhatt Portfolio").
-   - Dataset name: `production`. Choose **Public** dataset visibility (so the live site can read content without needing a secret token).
-   - When asked to use the existing schema / output path, you can skip that — the schema already lives in `src/sanity/schemaTypes/`, so just let it create the project and stop there (don't let it overwrite files).
-3. It will print a **Project ID**. Copy it.
-4. Create a `.env.local` file in the project root (copy `.env.local.example`) and fill in:
-   ```
-   NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+   NEXT_PUBLIC_SANITY_PROJECT_ID=188jezxf
    NEXT_PUBLIC_SANITY_DATASET=production
    ```
-5. Run `npm run dev` and open `http://localhost:3000/studio` — log in with the same account, and you'll see the content editor.
-6. **Add the same two environment variables to Vercel** (Project Settings → Environment Variables) so the live site can read them too, then redeploy.
+   Redeploy after adding them (or wait for the next push).
+2. **Register the live domain as a CORS origin** in Sanity — go to [sanity.io/manage](https://sanity.io/manage) → this project → API → CORS Origins → Add CORS origin → `https://www.sanketbhatt.com`. Allow credentials: yes.
+3. Visit `https://www.sanketbhatt.com/studio` and log in with your Sanity account — that's the content editor from now on.
 
-Once that's done, `/studio` on your live domain becomes your content editor — log in there any time to update text, add projects, swap the photo, or upload transcripts. Changes go live immediately (no redeploy needed for content, only for code changes).
+Changes published in Studio go live immediately — no redeploy needed for content, only for code changes.
 
 ## Deploying to Vercel
 
@@ -90,5 +79,5 @@ Everything below can be filled in from `/studio` once Sanity is set up — no co
 
 ## Notes
 
-- The custom domain URL is hardcoded in a few places as a placeholder (`https://sanketbhatt.dev`) — update it in `src/app/layout.tsx`, `src/app/sitemap.ts`, and `src/app/robots.ts` once the real domain is confirmed.
+- Live domain: `https://www.sanketbhatt.com` — used in `src/app/layout.tsx`, `src/app/sitemap.ts`, and `src/app/robots.ts` for SEO/OG metadata.
 - The old music-only site (pre-portfolio) is preserved on the `music-site-archive` branch and at the `backup-old-portfolio` tag, untouched.

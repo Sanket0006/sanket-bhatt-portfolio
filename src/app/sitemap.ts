@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllProjectSlugs } from "@/lib/content";
 
-const siteUrl = "https://sanketbhatt.dev"; // [TODO: update once the custom domain is confirmed]
+const siteUrl = "https://www.sanketbhatt.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticRoutes = ["", "/music"].map((path) => ({

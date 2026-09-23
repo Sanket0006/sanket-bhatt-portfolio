@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://sanketbhatt.dev"; // [TODO: update once the custom domain is confirmed]
+const siteUrl = "https://www.sanketbhatt.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
