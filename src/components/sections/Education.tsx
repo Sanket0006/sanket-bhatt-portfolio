@@ -28,22 +28,22 @@ export function Education({ education }: EducationProps) {
               <p className="mt-2 text-sm leading-relaxed text-muted">
                 {entry.description}
               </p>
+
+              {entry.credentialUrl && (
+                <Link
+                  href={entry.credentialUrl}
+                  target="_blank"
+                  rel="noopener"
+                  data-cursor-magnet
+                  className="mt-3 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs transition-colors hover:border-accent"
+                >
+                  <FileText size={13} />
+                  {entry.credentialLabel || "View credential"}
+                </Link>
+              )}
             </Reveal>
           ))}
         </div>
-
-        <Reveal direction="up">
-          <Link
-            href="/transcript.pdf"
-            target="_blank"
-            rel="noopener"
-            data-cursor-magnet
-            className="mt-4 inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm transition-colors hover:border-accent"
-          >
-            <FileText size={14} />
-            View transcript
-          </Link>
-        </Reveal>
       </div>
     </section>
   );

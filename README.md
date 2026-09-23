@@ -87,7 +87,8 @@ Everything below can be filled in from `/studio` once Sanity is set up — no co
 - [ ] **Skill Groups** → Frameworks, Tools, Currently Learning (Languages already has Python & C from CS50)
 - [ ] **Projects** → 4 placeholder projects: title, summary, overview, problem, approach, tech stack, GitHub URL, live URL, and optionally a cover image
 - [ ] **Ventures** → Apex Web Solution and Stratosphere website URLs
-- [ ] **Site Settings** → Transcript PDF — upload it here and it's served permanently at `sanketbhatt.com/transcript.pdf` (linked from the Education page). Replace the file any time to update that link everywhere; if it's ever removed, that URL shows a proper 404 explaining it's not available instead of breaking.
+- [ ] **Site Settings** → Transcript PDF — upload it here and it's served permanently at `sanketbhatt.com/transcript.pdf`, linked from the University of Windsor entry on the Education page. Replace the file any time to update that link everywhere; if it's ever removed, that URL shows a proper 404 explaining it's not available instead of breaking.
+- [ ] **Education** → CS50x entry: `credentialUrl` — your official certificate verification link (cs50.harvard.edu or credentials.edx.org), and CS50P entry: same. These are external links, not uploaded files.
 
 ## Notes
 

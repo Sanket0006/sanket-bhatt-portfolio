@@ -55,6 +55,8 @@ export type EducationEntry = {
   org: string;
   period: string;
   description: string;
+  credentialUrl?: string;
+  credentialLabel?: string;
 };
 
 const SITE_SETTINGS_QUERY = `*[_type == "siteSettings"][0]{
@@ -82,7 +84,7 @@ const SKILL_GROUPS_QUERY = `*[_type == "skillGroup"] | order(order asc){ title, 
 const VENTURES_QUERY = `*[_type == "venture"] | order(order asc){ name, role, description, href }`;
 
 const EDUCATION_QUERY = `*[_type == "educationEntry"] | order(order asc){
-  title, org, period, description
+  title, org, period, description, credentialUrl, credentialLabel
 }`;
 
 async function safeFetch<T>(query: string, params: QueryParams = {}): Promise<T | null> {
