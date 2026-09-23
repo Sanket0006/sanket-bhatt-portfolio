@@ -12,25 +12,36 @@ import {
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { site } from "@/content/site";
 
 type Status = "idle" | "sending" | "sent" | "error" | "not-configured";
 
-const socialLinks = [
-  { href: site.social.linkedin, label: "LinkedIn", icon: LinkedinIcon },
-  { href: site.social.github, label: "GitHub", icon: GithubIcon },
-  { href: site.social.instagram, label: "Instagram", icon: InstagramIcon },
-  { href: site.social.spotify, label: "Spotify", icon: SpotifyIcon },
-  { href: site.social.youtube, label: "YouTube", icon: YoutubeIcon },
-];
+type ContactProps = {
+  email: string;
+  social: {
+    github?: string;
+    linkedin?: string;
+    instagram?: string;
+    spotify?: string;
+    youtube?: string;
+  };
+  formspreeId?: string;
+};
 
-export function Contact() {
+export function Contact({ email, social, formspreeId }: ContactProps) {
   const [status, setStatus] = useState<Status>("idle");
+
+  const socialLinks = [
+    { href: social.linkedin, label: "LinkedIn", icon: LinkedinIcon },
+    { href: social.github, label: "GitHub", icon: GithubIcon },
+    { href: social.instagram, label: "Instagram", icon: InstagramIcon },
+    { href: social.spotify, label: "Spotify", icon: SpotifyIcon },
+    { href: social.youtube, label: "YouTube", icon: YoutubeIcon },
+  ].filter((s): s is { href: string; label: string; icon: typeof LinkedinIcon } => Boolean(s.href));
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!site.formspreeId) {
+    if (!formspreeId) {
       setStatus("not-configured");
       return;
     }
@@ -40,7 +51,7 @@ export function Contact() {
     setStatus("sending");
 
     try {
-      const res = await fetch(`https://formspree.io/f/${site.formspreeId}`, {
+      const res = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: "POST",
         body: data,
         headers: { Accept: "application/json" },
@@ -124,10 +135,9 @@ export function Contact() {
               )}
               {status === "not-configured" && (
                 <p className="text-sm text-muted">
-                  [TODO: this form isn&apos;t wired up yet — add your Formspree
-                  form ID to <code>site.formspreeId</code> in{" "}
-                  <code>src/content/site.ts</code>.] In the meantime, email me
-                  directly below.
+                  [TODO: this form isn&apos;t wired up yet — add a Formspree
+                  form ID in Sanity Studio at /studio, under Site Settings.]
+                  In the meantime, email me directly below.
                 </p>
               )}
             </form>
@@ -140,11 +150,11 @@ export function Contact() {
                   Email
                 </div>
                 <a
-                  href={`mailto:${site.email}`}
+                  href={`mailto:${email}`}
                   data-cursor-magnet
                   className="font-display text-2xl font-medium transition-colors hover:text-accent"
                 >
-                  {site.email}
+                  {email}
                 </a>
               </div>
 

@@ -1,13 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { GithubIcon } from "@/components/ui/BrandIcons";
-import { getProjectBySlug, projects } from "@/content/projects";
+import { getMergedProjectBySlug, getAllProjectSlugs } from "@/lib/content";
 
-export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  const slugs = await getAllProjectSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -16,7 +18,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getMergedProjectBySlug(slug);
   if (!project) return {};
   return {
     title: project.title,
@@ -30,10 +32,11 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = getProjectBySlug(slug);
+  const project = await getMergedProjectBySlug(slug);
   if (!project) notFound();
 
-  const validLink = (href: string) => !href.startsWith("[TODO");
+  const validLink = (href?: string) => Boolean(href) && !href!.startsWith("[TODO");
+  const imageUrl = project.image?.asset?.url;
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-28 sm:px-8">
@@ -91,7 +94,9 @@ export default async function ProjectPage({
           )}
         </div>
 
-        <div className="mt-14 aspect-video w-full rounded-2xl glass" />
+        <div className="relative mt-14 aspect-video w-full overflow-hidden rounded-2xl glass">
+          {imageUrl && <Image src={imageUrl} alt="" fill className="object-cover" />}
+        </div>
 
         <div className="mt-14 space-y-10">
           <div>

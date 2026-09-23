@@ -1,9 +1,11 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Marquee } from "@/components/ui/Marquee";
-import { skillGroups, skillMarquee } from "@/content/skills";
+import type { SkillGroup } from "@/sanity/queries";
 
-export function Skills() {
+export function Skills({ skillGroups }: { skillGroups: SkillGroup[] }) {
+  const marqueeItems = [...new Set(skillGroups.flatMap((g) => g.items))];
+
   return (
     <section id="skills" className="scroll-mt-24 px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-6xl">
@@ -32,9 +34,11 @@ export function Skills() {
           ))}
         </div>
 
-        <Reveal direction="up">
-          <Marquee items={skillMarquee} />
-        </Reveal>
+        {marqueeItems.length > 0 && (
+          <Reveal direction="up">
+            <Marquee items={marqueeItems} />
+          </Reveal>
+        )}
       </div>
     </section>
   );

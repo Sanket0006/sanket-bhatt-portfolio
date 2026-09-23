@@ -3,43 +3,42 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ArrowDown, Mail } from "lucide-react";
-import { site } from "@/content/site";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const ROTATE_MS = 2200;
 
-function RotatingTagline() {
+function RotatingTagline({ taglines }: { taglines: string[] }) {
   const [index, setIndex] = useState(0);
   const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % site.taglines.length);
+      setIndex((i) => (i + 1) % taglines.length);
     }, ROTATE_MS);
     return () => clearInterval(timer);
-  }, []);
+  }, [taglines]);
 
   return (
     <span className="relative inline-block h-[1.4em] min-w-[11ch] align-bottom">
       <AnimatePresence mode="wait">
         <motion.span
-          key={site.taglines[index]}
+          key={taglines[index]}
           initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           exit={prefersReducedMotion ? undefined : { opacity: 0, y: -12 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="absolute left-0 top-0 text-accent"
         >
-          {site.taglines[index]}
+          {taglines[index]}
         </motion.span>
       </AnimatePresence>
     </span>
   );
 }
 
-function AnimatedName() {
+function AnimatedName({ name }: { name: string }) {
   const prefersReducedMotion = useReducedMotion();
-  const letters = site.name.split("");
+  const letters = name.split("");
 
   return (
     <motion.h1
@@ -73,7 +72,13 @@ function AnimatedName() {
   );
 }
 
-export function Hero() {
+type HeroProps = {
+  name: string;
+  taglines: string[];
+  shortIntro: string;
+};
+
+export function Hero({ name, taglines, shortIntro }: HeroProps) {
   return (
     <section className="relative flex min-h-screen flex-col justify-center px-5 pt-24 sm:px-8">
       <div className="mx-auto w-full max-w-6xl">
@@ -86,7 +91,7 @@ export function Hero() {
           Portfolio
         </motion.div>
 
-        <AnimatedName />
+        <AnimatedName name={name} />
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -94,7 +99,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className="mt-4 font-display text-xl text-muted sm:text-2xl"
         >
-          <RotatingTagline />
+          <RotatingTagline taglines={taglines} />
         </motion.div>
 
         <motion.p
@@ -103,7 +108,7 @@ export function Hero() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className="mt-6 max-w-xl leading-relaxed text-muted"
         >
-          {site.shortIntro}
+          {shortIntro}
         </motion.p>
 
         <motion.div

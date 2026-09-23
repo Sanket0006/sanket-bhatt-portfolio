@@ -9,7 +9,7 @@ import { site } from "@/content/site";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { cn } from "@/lib/utils";
 
-export function Header() {
+export function Header({ name = site.name }: { name?: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -42,7 +42,7 @@ export function Header() {
             height={28}
             className="rounded-full"
           />
-          {site.name}
+          {name}
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
