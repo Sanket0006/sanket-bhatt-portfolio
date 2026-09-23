@@ -31,53 +31,22 @@ const SONGS = [
 function ytUrl(id){ return `https://youtu.be/${id}`; }
 function ytThumb(id){ return `https://img.youtube.com/vi/${id}/hqdefault.jpg`; }
 
-// ---------- Waveform ----------
-function buildWaveform(el, bars=28){
+// ---------- Latest releases (home page music section) ----------
+function buildReleaseList(el, count=6){
   if(!el) return;
-  for(let i=0;i<bars;i++){
-    const s = document.createElement('span');
-    s.style.animationDelay = (Math.random()*1.4).toFixed(2)+'s';
-    s.style.animationDuration = (1.1+Math.random()*0.8).toFixed(2)+'s';
-    el.appendChild(s);
-  }
+  const latest = [...SONGS].slice(-count).reverse();
+  el.innerHTML = latest.map(s => `
+    <a class="release-row" href="${ytUrl(s.id)}" target="_blank" rel="noopener">
+      <span class="release-name">${s.name}</span>
+      <span class="release-date">${s.month} ${s.year}</span>
+    </a>
+  `).join('');
 }
 
-// ---------- Timeline (home page) ----------
-function buildTimeline(el){
-  if(!el) return;
-  const byYear = {};
-  SONGS.forEach(s => { (byYear[s.year] ||= []).push(s); });
-
-  const years = [2019, ...Object.keys(byYear).map(Number).sort((a,b)=>a-b), 2026];
-  const uniqueYears = [...new Set(years)];
-
-  uniqueYears.forEach(year => {
-    const block = document.createElement('div');
-    block.className = 'timeline-year reveal';
-
-    if(year === 2019){
-      block.innerHTML = `<h3>2019</h3><div class="milestone">First tracks made in a bedroom setup — the beginning.</div>`;
-    } else if(year === 2026){
-      block.innerHTML = `<h3>2026</h3><div class="milestone">Present day — new sounds in the works.</div>`;
-    } else if(byYear[year]){
-      const chips = byYear[year].map(s => `
-        <a class="song-chip" href="${ytUrl(s.id)}" target="_blank" rel="noopener">
-          <span class="month">${s.month}</span>
-          <span class="name">${s.name}</span>
-        </a>
-      `).join('');
-      block.innerHTML = `<h3>${year}</h3><div class="song-row">${chips}</div>`;
-    } else {
-      return;
-    }
-    el.appendChild(block);
-  });
-}
-
-// ---------- Video grid (videos page) ----------
+// ---------- Video grid (discography page) ----------
 function buildVideoGrid(el){
   if(!el) return;
-  el.innerHTML = SONGS.map(s => `
+  el.innerHTML = [...SONGS].reverse().map(s => `
     <a class="video-card reveal" href="${ytUrl(s.id)}" target="_blank" rel="noopener">
       <div class="thumb-wrap">
         <img src="${ytThumb(s.id)}" alt="${s.name}" loading="lazy">
@@ -111,104 +80,8 @@ function initReveal(){
   items.forEach(i => io.observe(i));
 }
 
-// ---------- Mouse parallax on hero mark (desktop only) ----------
-function initParallax(){
-  const stage = document.querySelector('.mark-stage');
-  const img = document.querySelector('.mark-img');
-  if(!stage || !img) return;
-  if(!window.matchMedia('(pointer: fine)').matches) return;
-
-  stage.addEventListener('mousemove', (e) => {
-    const r = stage.getBoundingClientRect();
-    const x = (e.clientX - r.left)/r.width - 0.5;
-    const y = (e.clientY - r.top)/r.height - 0.5;
-    img.style.transform = `translate(${x*18}px, ${y*18}px) rotate(${x*4}deg)`;
-  });
-  stage.addEventListener('mouseleave', () => {
-    img.style.transform = 'translate(0,0) rotate(0deg)';
-  });
-}
-
-// ---------- Ambient full-bleed canvas (gives desktop life) ----------
-function initAmbientCanvas(){
-  const canvas = document.getElementById('ambient-canvas');
-  if(!canvas) return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const ctx = canvas.getContext('2d');
-  let w, h, dpr;
-  let particles = [];
-
-  function resize(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = canvas.clientWidth; h = canvas.clientHeight;
-    canvas.width = w*dpr; canvas.height = h*dpr;
-    ctx.setTransform(dpr,0,0,dpr,0,0);
-    const count = Math.max(24, Math.floor((w*h)/34000));
-    particles = Array.from({length:count}, () => ({
-      x: Math.random()*w,
-      y: Math.random()*h,
-      r: 0.6 + Math.random()*1.8,
-      vx: (Math.random()-0.5)*0.14,
-      vy: (Math.random()-0.5)*0.14,
-      a: 0.15 + Math.random()*0.35
-    }));
-  }
-
-  function step(){
-    ctx.clearRect(0,0,w,h);
-    particles.forEach(p => {
-      p.x += p.vx; p.y += p.vy;
-      if(p.x < 0) p.x = w; if(p.x > w) p.x = 0;
-      if(p.y < 0) p.y = h; if(p.y > h) p.y = 0;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
-      ctx.fillStyle = `rgba(23,232,255,${p.a})`;
-      ctx.fill();
-    });
-    // faint connecting lines for nearby particles (only on larger screens for perf)
-    if(w > 720){
-      for(let i=0;i<particles.length;i++){
-        for(let j=i+1;j<particles.length;j++){
-          const dx = particles[i].x-particles[j].x;
-          const dy = particles[i].y-particles[j].y;
-          const dist = Math.sqrt(dx*dx+dy*dy);
-          if(dist < 120){
-            ctx.strokeStyle = `rgba(23,232,255,${0.06*(1-dist/120)})`;
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-    requestAnimationFrame(step);
-  }
-
-  resize();
-  window.addEventListener('resize', resize);
-  requestAnimationFrame(step);
-}
-
-// ---------- Nav active state ----------
-function markActiveNav(){
-  const path = location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-links a').forEach(a => {
-    const href = a.getAttribute('href');
-    if(href === path || (path === '' && href === 'index.html')){
-      a.classList.add('active');
-    }
-  });
-}
-
 document.addEventListener('DOMContentLoaded', () => {
-  buildWaveform(document.getElementById('waveform'));
-  buildTimeline(document.getElementById('timeline'));
+  buildReleaseList(document.getElementById('release-list'));
   buildVideoGrid(document.getElementById('video-grid'));
   initReveal();
-  initParallax();
-  initAmbientCanvas();
-  markActiveNav();
 });

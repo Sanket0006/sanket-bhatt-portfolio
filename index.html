@@ -3,107 +3,178 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sanket Bhatt — Electronic Music</title>
-<meta name="description" content="Sanket Bhatt — melodic bass and progressive electronic music since 2019. Listen on Spotify, YouTube and Instagram.">
+<title>Sanket Bhatt — Portfolio</title>
+<meta name="description" content="Sanket Bhatt — portfolio: work, experience, and music.">
 <link rel="icon" href="badge.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Space+Grotesk:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,450;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="grid-bg"></div>
-<div class="glow-top"></div>
-<canvas id="ambient-canvas"></canvas>
-
 <nav>
-  <a class="nav-brand" href="index.html">
-    <img src="badge.webp" alt="Sanket Bhatt">
-    <span>Sanket Bhatt</span>
-  </a>
+  <a class="nav-brand" href="index.html">Sanket Bhatt</a>
   <ul class="nav-links">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="videos.html">Videos</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#music">Music</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <main>
 
-  <div class="notice-banner">
-    <div class="notice-banner-inner">
-      <span class="notice-dot" aria-hidden="true"></span>
-      <p><strong>Under production —</strong> this site is being rebuilt into my full portfolio. Once it's ready, the music page you're viewing now will move to its own address.</p>
-    </div>
-  </div>
-
   <section class="hero">
-    <div class="hero-left">
-      <div class="eyebrow">Electronic Music &middot; Since 2019</div>
-      <h1 class="display">Sanket<br>Bhatt</h1>
-      <div class="subhead">Melodic Bass / Progressive Electronic</div>
-      <p class="bio">I have been creating music since 2019, constantly learning and improving along the way. Music is my passion, and I love making my own tracks and remixing songs to give them a fresh, unique touch. Every beat, melody, and sound I create comes straight from my heart. No matter where you're from, if you love music, you're in the right place. Let the music speak for itself.</p>
-
-      <div class="waveform" id="waveform"></div>
-
-      <div class="platforms">
-        <a class="platform-btn" href="https://open.spotify.com/artist/1VACsWTrn2zGETTrijTl0z?si=lRrB42oaTxKC2kicAt6q9Q" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M7 10.5c3-1 7-.6 10 1.2M7.5 13.5c2.5-.8 5.8-.4 8 .9M8 16.3c2-.6 4.6-.3 6.3.7" stroke-linecap="round"/></svg>
-          Spotify
-        </a>
-        <a class="platform-btn" href="https://www.youtube.com/@Sanket_Bhatt" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
-          YouTube
-        </a>
-        <a class="platform-btn" href="https://instagram.com/sanket_1225" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
-          Instagram
-        </a>
-        <a class="platform-btn" href="https://www.linkedin.com/in/sanketbhatt25" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><line x1="7.5" y1="10.5" x2="7.5" y2="16.5"/><circle cx="7.5" cy="7.3" r="0.9" fill="currentColor" stroke="none"/><path d="M11.5 16.5v-4c0-1.4 1-2.3 2.2-2.3 1.2 0 2 .8 2 2.3v4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          LinkedIn
-        </a>
-      </div>
-    </div>
-
-    <div class="hero-right">
-      <div class="mark-stage">
-        <div class="mark-ring r2"></div>
-        <div class="mark-ring r3"></div>
-        <div class="mark-orbit-dot"></div>
-        <img class="mark-img" src="mark.webp" alt="">
+    <div class="wrap">
+      <div class="eyebrow reveal">Portfolio</div>
+      <h1 class="reveal">Sanket Bhatt</h1>
+      <div class="role reveal">Developer &amp; Electronic Music Producer</div>
+      <p class="bio reveal">I build things and make music. This site brings both together — a look at what I've worked on, and the tracks I've been releasing since 2019.</p>
+      <div class="cta-row reveal">
+        <a class="btn btn-primary" href="#work">View work</a>
+        <a class="btn" href="#contact">Get in touch</a>
       </div>
     </div>
   </section>
 
-  <section class="section" id="journey">
-    <div class="section-head reveal">
-      <div class="eyebrow">The Journey</div>
-      <h2 class="display">2019 — 2026</h2>
-      <p>From a bedroom setup to twenty-plus releases. Every track below links straight to the upload — tap any name to listen.</p>
+  <section id="about">
+    <div class="wrap">
+      <div class="eyebrow reveal">About</div>
+      <h2 class="section-title reveal">A bit about me</h2>
+      <div class="about reveal">
+        <p>Add a couple of paragraphs here about your background, what you do day-to-day, and what you care about — this is placeholder copy for now.</p>
+        <p>Mention what got you into building things, and what got you into music. Keep it short and specific rather than generic.</p>
+        <div class="skills">
+          <span class="skill-tag">Skill one</span>
+          <span class="skill-tag">Skill two</span>
+          <span class="skill-tag">Skill three</span>
+          <span class="skill-tag">Skill four</span>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="timeline" id="timeline"></div>
+  <section id="work">
+    <div class="wrap-wide">
+      <div class="eyebrow reveal">Selected work</div>
+      <h2 class="section-title reveal">Projects</h2>
 
-    <div class="timeline-cta reveal">
-      <a class="platform-btn" href="videos.html">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
-        Watch the videos
-      </a>
+      <div class="reveal">
+        <a class="project-row" href="#" target="_blank" rel="noopener">
+          <span class="project-index">01</span>
+          <span class="project-main">
+            <span class="name">Project name</span>
+            <span class="desc">One-line description of what this project does and the problem it solves.</span>
+            <span class="project-tags"><span>Tech</span><span>Tech</span></span>
+          </span>
+          <span class="project-link">View &rarr;</span>
+        </a>
+        <a class="project-row" href="#" target="_blank" rel="noopener">
+          <span class="project-index">02</span>
+          <span class="project-main">
+            <span class="name">Project name</span>
+            <span class="desc">One-line description of what this project does and the problem it solves.</span>
+            <span class="project-tags"><span>Tech</span><span>Tech</span></span>
+          </span>
+          <span class="project-link">View &rarr;</span>
+        </a>
+        <a class="project-row" href="#" target="_blank" rel="noopener">
+          <span class="project-index">03</span>
+          <span class="project-main">
+            <span class="name">Project name</span>
+            <span class="desc">One-line description of what this project does and the problem it solves.</span>
+            <span class="project-tags"><span>Tech</span><span>Tech</span></span>
+          </span>
+          <span class="project-link">View &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="music">
+    <div class="wrap">
+      <div class="eyebrow reveal">Music</div>
+      <h2 class="section-title reveal">Electronic music, since 2019</h2>
+      <p class="music-intro reveal">I've been creating melodic bass and progressive electronic music since 2019 — writing originals and remixing tracks I love. Every beat comes straight from the heart.</p>
+
+      <div class="cta-row reveal">
+        <a class="btn" href="https://open.spotify.com/artist/1VACsWTrn2zGETTrijTl0z?si=lRrB42oaTxKC2kicAt6q9Q" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M7 10.5c3-1 7-.6 10 1.2M7.5 13.5c2.5-.8 5.8-.4 8 .9M8 16.3c2-.6 4.6-.3 6.3.7" stroke-linecap="round"/></svg>
+          Spotify
+        </a>
+        <a class="btn" href="https://www.youtube.com/@Sanket_Bhatt" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M10.5 9.5l5 2.5-5 2.5z" fill="currentColor" stroke="none"/></svg>
+          YouTube
+        </a>
+        <a class="btn" href="https://instagram.com/sanket_1225" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+      </div>
+
+      <div class="release-list reveal" id="release-list"></div>
+
+      <a class="music-more" href="videos.html">View full discography &rarr;</a>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="eyebrow reveal">Experience</div>
+      <h2 class="section-title reveal">Where I've worked</h2>
+
+      <div class="reveal">
+        <div class="exp-row">
+          <div class="exp-period">2024 — Present</div>
+          <div>
+            <div class="exp-role">Role title</div>
+            <div class="exp-org">Company name</div>
+            <div class="exp-desc">Short description of what you did and the impact you had in this role.</div>
+          </div>
+        </div>
+        <div class="exp-row">
+          <div class="exp-period">2022 — 2024</div>
+          <div>
+            <div class="exp-role">Role title</div>
+            <div class="exp-org">Company name</div>
+            <div class="exp-desc">Short description of what you did and the impact you had in this role.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="eyebrow reveal">Contact</div>
+      <h2 class="section-title reveal">Let's talk</h2>
+      <p class="reveal">Open to new projects, collaborations, or just a chat about music. Reach out any time.</p>
+      <a class="contact-email reveal" href="mailto:sanketbhatt006@gmail.com">sanketbhatt006@gmail.com</a>
+
+      <div class="social-row reveal">
+        <a class="btn" href="https://www.linkedin.com/in/sanketbhatt25" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="3"/><line x1="7.5" y1="10.5" x2="7.5" y2="16.5"/><circle cx="7.5" cy="7.3" r="0.9" fill="currentColor" stroke="none"/><path d="M11.5 16.5v-4c0-1.4 1-2.3 2.2-2.3 1.2 0 2 .8 2 2.3v4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          LinkedIn
+        </a>
+        <a class="btn" href="https://instagram.com/sanket_1225" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1" fill="currentColor" stroke="none"/></svg>
+          Instagram
+        </a>
+        <a class="btn" href="https://github.com/Sanket0006" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3a9 9 0 0 0-2.85 17.54c.45.08.61-.2.61-.44v-1.7c-2.5.54-3.03-1.2-3.03-1.2-.41-1.04-1-1.32-1-1.32-.82-.56.06-.55.06-.55.9.06 1.38.93 1.38.93.8 1.38 2.11.98 2.63.75.08-.58.32-.98.57-1.2-2-.23-4.1-1-4.1-4.44 0-.98.35-1.78.92-2.4-.09-.23-.4-1.15.09-2.4 0 0 .76-.24 2.48.92a8.6 8.6 0 0 1 4.52 0c1.72-1.16 2.48-.92 2.48-.92.49 1.25.18 2.17.09 2.4.57.62.92 1.42.92 2.4 0 3.45-2.1 4.2-4.11 4.43.33.28.62.85.62 1.7v2.5c0 .25.16.53.62.44A9 9 0 0 0 12 3z"/></svg>
+          GitHub
+        </a>
+      </div>
     </div>
   </section>
 
 </main>
 
 <footer>
-  <div class="foot-links">
-    <a href="https://open.spotify.com/artist/1VACsWTrn2zGETTrijTl0z?si=lRrB42oaTxKC2kicAt6q9Q" target="_blank" rel="noopener">Spotify</a>
-    <a href="https://www.youtube.com/@Sanket_Bhatt" target="_blank" rel="noopener">YouTube</a>
-    <a href="https://instagram.com/sanket_1225" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://www.linkedin.com/in/sanketbhatt25" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="videos.html">Videos</a>
-  </div>
-  <div class="copy">Sanket Bhatt &copy; 2026 &mdash; All music, all heart.</div>
+  <div class="copy">Sanket Bhatt &copy; 2026</div>
+  <a class="top-link" href="#">Back to top</a>
 </footer>
 
 <script src="script.js"></script>
