@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Education } from "@/components/sections/Education";
-import { getMergedEducation } from "@/lib/content";
+import { education } from "@/content/education";
 
 export const metadata: Metadata = { title: "Education" };
 
-export default async function EducationPage() {
-  const education = await getMergedEducation();
+export default function EducationPage() {
   return <Education education={education} />;
 }

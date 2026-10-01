@@ -1,13 +1,12 @@
 # Sanket Bhatt — Portfolio
 
-A personal portfolio built with Next.js (App Router), TypeScript, Tailwind CSS v4, and Framer Motion, with content managed through an embedded Sanity Studio at `/studio` so text, projects, and images can be edited directly from the site — no code changes needed for day-to-day updates.
+A personal portfolio built with Next.js (App Router), TypeScript, Tailwind CSS v4, and Framer Motion. All content lives in plain TypeScript files under `src/content/` — there's no CMS; you edit content by editing those files and pushing to GitHub, and Vercel deploys automatically.
 
 ## Tech stack
 
 - **Framework:** Next.js 16 (App Router) + TypeScript
 - **Styling:** Tailwind CSS v4
 - **Animation:** Framer Motion, Lenis (smooth scroll)
-- **CMS:** Sanity (embedded Studio, free tier)
 - **Contact form:** Formspree
 - **Hosting:** Vercel
 
@@ -16,79 +15,73 @@ A personal portfolio built with Next.js (App Router), TypeScript, Tailwind CSS v
 ```
 src/
   app/
-    (site)/            # the actual portfolio pages (share header/footer/etc.)
-      page.tsx          # home — hero + links out to every other page
-      about/            # /about
-      skills/           # /skills
-      work/             # /work — project list (cards link to /projects/[slug])
-      ventures/         # /ventures
-      education/        # /education — includes the "View transcript" link
-      music/            # /music — "coming soon"
-      contact/          # /contact
-      projects/[slug]/  # project detail pages
-      not-found.tsx     # custom 404
-      layout.tsx        # site chrome: header, footer, cursor, background
-    studio/[[...tool]]/ # embedded Sanity Studio — NOT wrapped in site chrome
-    transcript.pdf/      # route handler — proxies the transcript file from
-                          # Sanity, or a 404 with an explanation if none is set
-    layout.tsx          # minimal root layout (fonts, theme provider only)
+    page.tsx           # home — hero + links out to every other page
+    about/              # /about
+    skills/             # /skills
+    work/                # /work — project list (cards link to /projects/[slug])
+    ventures/            # /ventures
+    education/           # /education — transcript + certificate links live here
+    music/               # /music — "coming soon"
+    contact/             # /contact
+    projects/[slug]/     # project detail pages
+    not-found.tsx        # custom 404 ("Lost in the clouds")
+    layout.tsx           # everything shared: fonts, theme, header, footer,
+                          # cursor, background, scroll effects
   components/
     layout/    # header, footer, cursor, scroll effects, theme toggle
     sections/  # Hero, About, Skills, Projects, Ventures, Education, Contact
                # (each is a reusable component; every /page.tsx above just
-               # fetches its own data and renders the matching one)
+               # imports the matching content file and renders one)
     ui/        # shared building blocks (Reveal, TiltCard, MagneticButton, …)
-  content/     # static fallback content (used until Sanity has real data)
-  lib/content.ts  # merges live Sanity data with the static fallback
-  sanity/      # Sanity schema, client, GROQ queries, Studio config
+  content/     # ALL site content — this is what you edit
 ```
 
-Nav order (matches the order pages were built in): About → Skills → Work → Ventures → Education → Music → Contact.
+Nav order: About → Skills → Work → Ventures → Education → Music → Contact.
 
-### How content works
+## Editing content
 
-Every section fetches from Sanity first. If a document doesn't exist yet (or Sanity isn't configured at all), it falls back to the placeholder content in `src/content/*.ts` — so the site always renders something reasonable, and switches over to your real content automatically the moment you publish it in Studio. You should never need to touch component code to update text, projects, skills, etc. — only if you want to change layout or design.
+Everything is in `src/content/`:
 
-## Workflow
+| File | What it controls |
+|---|---|
+| `site.ts` | Name, taglines, email, social links, nav, quick facts, Formspree ID |
+| `about.ts` | Bio paragraphs, photo path |
+| `projects.ts` | The 4 project cards + their detail pages |
+| `skills.ts` | Skill groups (Languages, Frameworks, Tools, Currently Learning) |
+| `ventures.ts` | Apex Web Solution, Stratosphere |
+| `education.ts` | School/certifications, including the transcript and certificate links |
 
-This project is managed entirely through GitHub → Vercel — no local dev server needed day-to-day. Push to `main`, Vercel builds and deploys automatically, content is edited live at `/studio` on the production domain.
+To add an image (photo, project cover, transcript PDF): drop the file in `/public`, then reference its path as a string (e.g. `/profile.jpg`) in the relevant content file.
 
-(`npm install && npm run dev` still works locally if you ever want it — `http://localhost:3000`, Studio at `http://localhost:3000/studio` — it's just not the normal workflow here.)
+## Transcript & certificate links
 
-## Setting up Sanity (do this once)
+- **Transcript:** `sanketbhatt.com/transcript.pdf` is served automatically by Next.js if a file exists at `public/transcript.pdf` — just drop the file there, no code change needed. If it's missing, that URL falls through to the custom 404 page.
+- **Certificates:** `education.ts` entries have an optional `credentialUrl` + `credentialLabel`. The University of Windsor entry points at `/transcript.pdf`; the CS50x/CS50P entries point directly at their official `certificates.cs50.io` verification links.
 
-The site works and looks complete without this — it just shows placeholder content until you do this. Project already created: **Sanket Bhatt Portfolio**, project ID `188jezxf`, dataset `production`.
+## Run locally
 
-1. **Add environment variables in Vercel** — Project Settings → Environment Variables:
-   ```
-   NEXT_PUBLIC_SANITY_PROJECT_ID=188jezxf
-   NEXT_PUBLIC_SANITY_DATASET=production
-   ```
-   Redeploy after adding them (or wait for the next push).
-2. **Register the live domain as a CORS origin** in Sanity — go to [sanity.io/manage](https://sanity.io/manage) → this project → API → CORS Origins → Add CORS origin → `https://www.sanketbhatt.com`. Allow credentials: yes.
-3. Visit `https://www.sanketbhatt.com/studio` and log in with your Sanity account — that's the content editor from now on.
+```bash
+npm install
+npm run dev
+```
 
-Changes published in Studio go live immediately — no redeploy needed for content, only for code changes.
+Opens at `http://localhost:3000`. Not required day-to-day — the normal workflow is edit → commit → push → Vercel deploys.
 
 ## Deploying to Vercel
 
-- **Framework Preset:** Next.js (should auto-detect; verify in Project Settings → General if it doesn't)
+- **Framework Preset:** Next.js (should auto-detect)
 - **Build command:** `next build` (default)
-- **Environment variables:** the two `NEXT_PUBLIC_SANITY_*` variables above
+- No environment variables required.
 - Every push to `main` deploys automatically.
 
 ## Content checklist (TODO)
 
-Everything below can be filled in from `/studio` once Sanity is set up — no code editing required. A Word doc covering the same list was also sent separately if you'd rather write answers there and send them back.
-
-- [ ] **Site Settings** → Formspree form ID (create one free at [formspree.io](https://formspree.io)) so the contact form actually sends
-- [ ] **About** → your photo
-- [ ] **About** → bio paragraphs (a sensible default is pre-filled — edit as you like)
-- [ ] **Skill Groups** → Frameworks, Tools, Currently Learning (Languages already has Python & C from CS50)
-- [ ] **Projects** → 4 placeholder projects: title, summary, overview, problem, approach, tech stack, GitHub URL, live URL, and optionally a cover image
+- [ ] **About** → your photo (`src/content/about.ts` → `photoUrl`)
+- [ ] **Skills** → Frameworks, Tools, Currently Learning (Languages already has Python & C from CS50)
+- [ ] **Projects** → 4 placeholder projects: title, summary, overview, problem, approach, tech stack, GitHub URL, live URL
 - [ ] **Ventures** → Apex Web Solution and Stratosphere website URLs
-- [ ] **Site Settings** → Transcript PDF — upload it here and it's served permanently at `sanketbhatt.com/transcript.pdf`, linked from the University of Windsor entry on the Education page. Replace the file any time to update that link everywhere; if it's ever removed, that URL shows a proper 404 explaining it's not available instead of breaking.
-- [ ] **Education** → CS50x entry: `credentialUrl` — your official certificate verification link (cs50.harvard.edu or credentials.edx.org), and CS50P entry: same. These are external links, not uploaded files.
+- [ ] **Contact** → Formspree form ID (`src/content/site.ts` → `formspreeId`) so the contact form actually sends
+- [ ] **Transcript** → drop the PDF at `public/transcript.pdf`
 
 ## Notes
 

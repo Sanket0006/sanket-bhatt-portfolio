@@ -35,7 +35,7 @@ export function AmbientBackground() {
       canvas!.width = w * dpr;
       canvas!.height = h * dpr;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.max(40, Math.floor((w * h) / 22000));
+      const count = Math.max(30, Math.floor((w * h) / 40000));
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
@@ -46,11 +46,20 @@ export function AmbientBackground() {
       }));
     }
 
+    let skip = false;
     function step() {
+      // Render at ~30fps instead of 60fps — this is slow-drifting ambient
+      // dust, nobody notices the halved frame rate, and it halves the cost.
+      skip = !skip;
+      if (skip) {
+        raf = requestAnimationFrame(step);
+        return;
+      }
+
       ctx!.clearRect(0, 0, w, h);
       for (const s of stars) {
-        s.x += s.vx;
-        s.y += s.vy;
+        s.x += s.vx * 2;
+        s.y += s.vy * 2;
         if (s.x < 0) s.x = w;
         if (s.x > w) s.x = 0;
         if (s.y < 0) s.y = h;
@@ -76,14 +85,14 @@ export function AmbientBackground() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
       <div
-        className="absolute -top-1/4 left-1/2 h-[70vh] w-[90vw] -translate-x-1/2 rounded-full opacity-40 blur-[120px]"
+        className="absolute -top-1/4 left-1/2 h-[70vh] w-[90vw] -translate-x-1/2 rounded-full opacity-40 blur-[90px]"
         style={{
           background:
             "radial-gradient(circle, var(--accent) 0%, transparent 65%)",
         }}
       />
       <div
-        className="absolute bottom-0 right-0 h-[50vh] w-[60vw] rounded-full opacity-30 blur-[120px]"
+        className="absolute bottom-0 right-0 h-[50vh] w-[60vw] rounded-full opacity-30 blur-[90px]"
         style={{
           background:
             "radial-gradient(circle, var(--accent-2) 0%, transparent 65%)",

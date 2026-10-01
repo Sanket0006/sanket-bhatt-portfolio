@@ -2,7 +2,7 @@ import Link from "next/link";
 import { FileText } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import type { EducationEntry } from "@/sanity/queries";
+import type { EducationEntry } from "@/content/education";
 
 type EducationProps = {
   education: EducationEntry[];

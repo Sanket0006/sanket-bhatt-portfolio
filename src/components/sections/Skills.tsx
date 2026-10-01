@@ -1,7 +1,7 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Marquee } from "@/components/ui/Marquee";
-import type { SkillGroup } from "@/sanity/queries";
+import type { SkillGroup } from "@/content/skills";
 
 export function Skills({ skillGroups }: { skillGroups: SkillGroup[] }) {
   const marqueeItems = [...new Set(skillGroups.flatMap((g) => g.items))];

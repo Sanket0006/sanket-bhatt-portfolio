@@ -5,11 +5,10 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { GithubIcon } from "@/components/ui/BrandIcons";
-import { getMergedProjectBySlug, getAllProjectSlugs } from "@/lib/content";
+import { projects, getProjectBySlug } from "@/content/projects";
 
-export async function generateStaticParams() {
-  const slugs = await getAllProjectSlugs();
-  return slugs.map((slug) => ({ slug }));
+export function generateStaticParams() {
+  return projects.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -18,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const project = await getMergedProjectBySlug(slug);
+  const project = getProjectBySlug(slug);
   if (!project) return {};
   return {
     title: project.title,
@@ -32,11 +31,11 @@ export default async function ProjectPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const project = await getMergedProjectBySlug(slug);
+  const project = getProjectBySlug(slug);
   if (!project) notFound();
 
   const validLink = (href?: string) => Boolean(href) && !href!.startsWith("[TODO");
-  const imageUrl = project.image?.asset?.url;
+  const imageUrl = project.image;
 
   return (
     <article className="mx-auto max-w-3xl px-5 py-28 sm:px-8">

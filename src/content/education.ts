@@ -21,8 +21,7 @@ export const education: EducationEntry[] = [
     org: "Harvard University",
     period: "Completed",
     description: "Harvard's introductory course to computer science and programming.",
-    // [TODO: add your CS50x certificate verification URL, e.g. from cs50.harvard.edu/certificates or credentials.edx.org]
-    credentialUrl: "",
+    credentialUrl: "https://certificates.cs50.io/369d37a7-8d0d-470c-93f6-8755fe588317.pdf?size=a4",
     credentialLabel: "View certificate",
   },
   {
@@ -30,8 +29,7 @@ export const education: EducationEntry[] = [
     org: "Harvard University",
     period: "Completed",
     description: "Harvard's course on programming fundamentals with Python.",
-    // [TODO: add your CS50P certificate verification URL]
-    credentialUrl: "",
+    credentialUrl: "https://certificates.cs50.io/e446fff9-d911-4c79-a085-e7af642c6569.pdf?size=a4",
     credentialLabel: "View certificate",
   },
 ];

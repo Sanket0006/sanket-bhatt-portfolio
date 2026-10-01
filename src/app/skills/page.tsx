@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Skills } from "@/components/sections/Skills";
-import { getMergedSkillGroups } from "@/lib/content";
+import { skillGroups } from "@/content/skills";
 
 export const metadata: Metadata = { title: "Skills" };
 
-export default async function SkillsPage() {
-  const skillGroups = await getMergedSkillGroups();
+export default function SkillsPage() {
   return <Skills skillGroups={skillGroups} />;
 }

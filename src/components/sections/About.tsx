@@ -21,7 +21,7 @@ export function About({ bioParagraphs, photoUrl, quickFacts }: AboutProps) {
                 <Image src={photoUrl} alt="" fill className="object-cover" />
               ) : (
                 <div className="flex h-full w-full items-center justify-center p-6 text-center text-sm text-muted">
-                  [TODO: Add your photo — upload it in the About document in Sanity Studio at /studio]
+                  [TODO: Add your photo — drop a file in /public and set photoUrl in src/content/about.ts]
                 </div>
               )}
               <Image

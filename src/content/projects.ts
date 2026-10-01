@@ -9,6 +9,8 @@ export type Project = {
   github: string;
   live: string;
   featured: boolean;
+  /** Optional path to a cover image in /public, e.g. "/projects/my-app.png" */
+  image?: string;
 };
 
 // All entries below are placeholders — replace title/summary/links/tech with

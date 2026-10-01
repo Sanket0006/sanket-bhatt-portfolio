@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Hero } from "@/components/sections/Hero";
 import { Reveal } from "@/components/ui/Reveal";
-import { getMergedSite } from "@/lib/content";
+import { site } from "@/content/site";
 
 const explore = [
   { href: "/about", label: "About", desc: "Background, quick facts, and what I care about." },
@@ -14,9 +14,7 @@ const explore = [
   { href: "/contact", label: "Contact", desc: "Get in touch, or find me elsewhere." },
 ];
 
-export default async function Home() {
-  const site = await getMergedSite();
-
+export default function Home() {
   return (
     <>
       <Hero name={site.name} taglines={site.taglines} shortIntro={site.shortIntro} />

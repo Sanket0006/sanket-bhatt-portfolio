@@ -3,6 +3,14 @@ import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { site } from "@/content/site";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { SmoothScrollProvider } from "@/components/layout/SmoothScrollProvider";
+import { AmbientBackground } from "@/components/layout/AmbientBackground";
+import { CustomCursor } from "@/components/layout/CustomCursor";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { LoadingIntro } from "@/components/layout/LoadingIntro";
+import { PageTransition } from "@/components/layout/PageTransition";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -52,12 +60,6 @@ export const metadata: Metadata = {
   },
 };
 
-/**
- * Deliberately minimal — /studio (Sanity Studio) also renders under this root
- * layout and needs full control of its own screen. All site chrome (header,
- * footer, cursor, background, scroll effects) lives in (site)/layout.tsx
- * instead, scoped to the actual portfolio routes.
- */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -66,7 +68,21 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
     >
       <body className="relative min-h-screen">
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <SmoothScrollProvider>
+            <LoadingIntro />
+            <ScrollProgress />
+            <CustomCursor />
+            <AmbientBackground />
+            <Header />
+            <main className="relative z-10">
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <div className="relative z-10">
+              <Footer />
+            </div>
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

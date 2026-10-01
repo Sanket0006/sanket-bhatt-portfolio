@@ -135,9 +135,10 @@ export function Contact({ email, social, formspreeId }: ContactProps) {
               )}
               {status === "not-configured" && (
                 <p className="text-sm text-muted">
-                  [TODO: this form isn&apos;t wired up yet — add a Formspree
-                  form ID in Sanity Studio at /studio, under Site Settings.]
-                  In the meantime, email me directly below.
+                  [TODO: this form isn&apos;t wired up yet — add your
+                  Formspree form ID to <code>formspreeId</code> in{" "}
+                  <code>src/content/site.ts</code>.] In the meantime, email
+                  me directly below.
                 </p>
               )}
             </form>

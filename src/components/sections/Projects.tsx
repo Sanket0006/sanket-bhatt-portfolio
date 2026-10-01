@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/ui/TiltCard";
-import type { Project } from "@/sanity/queries";
+import type { Project } from "@/content/projects";
 
 export function Projects({ projects }: { projects: Project[] }) {
   return (
@@ -13,12 +13,12 @@ export function Projects({ projects }: { projects: Project[] }) {
         <SectionHeading
           eyebrow="Selected work"
           title="Projects"
-          description="Edit these in Sanity Studio at /studio — until then, placeholder cards are shown."
+          description="Edit these in src/content/projects.ts — until then, placeholder cards are shown."
         />
 
         <div className="grid gap-6 sm:grid-cols-2">
           {projects.map((project, i) => {
-            const imageUrl = project.image?.asset?.url;
+            const imageUrl = project.image;
             return (
               <Reveal key={project.slug} direction="up" delay={i * 0.06}>
                 <TiltCard>

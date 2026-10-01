@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { TiltCard } from "@/components/ui/TiltCard";
-import type { Venture } from "@/sanity/queries";
+import type { Venture } from "@/content/ventures";
 
 export function Ventures({ ventures }: { ventures: Venture[] }) {
   return (

@@ -1,17 +1,25 @@
 import type { MetadataRoute } from "next";
-import { getAllProjectSlugs } from "@/lib/content";
+import { projects } from "@/content/projects";
 
 const siteUrl = "https://www.sanketbhatt.com";
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes = ["", "/music"].map((path) => ({
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticRoutes = [
+    "",
+    "/about",
+    "/skills",
+    "/work",
+    "/ventures",
+    "/education",
+    "/music",
+    "/contact",
+  ].map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: new Date(),
   }));
 
-  const slugs = await getAllProjectSlugs();
-  const projectRoutes = slugs.map((slug) => ({
-    url: `${siteUrl}/projects/${slug}`,
+  const projectRoutes = projects.map((p) => ({
+    url: `${siteUrl}/projects/${p.slug}`,
     lastModified: new Date(),
   }));
 

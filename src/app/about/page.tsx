@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { About } from "@/components/sections/About";
-import { getMergedSite, getMergedAbout } from "@/lib/content";
+import { site } from "@/content/site";
+import { about } from "@/content/about";
 
 export const metadata: Metadata = { title: "About" };
 
-export default async function AboutPage() {
-  const [site, about] = await Promise.all([getMergedSite(), getMergedAbout()]);
+export default function AboutPage() {
   return (
     <About
       bioParagraphs={about.bioParagraphs}
-      photoUrl={about.photoUrl}
+      photoUrl={about.photoUrl || null}
       quickFacts={site.quickFacts}
     />
   );

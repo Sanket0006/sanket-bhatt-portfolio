@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
-import { type ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { useFinePointer } from "@/hooks/useFinePointer";
 import { cn } from "@/lib/utils";
 
@@ -25,10 +25,16 @@ export function TiltCard({
   const rotateY = useTransform(springX, [0, 1], [-8, 8]);
   const glowX = useTransform(springX, [0, 1], ["0%", "100%"]);
   const glowY = useTransform(springY, [0, 1], ["0%", "100%"]);
+  const rectRef = useRef<DOMRect | null>(null);
+
+  function handleMouseEnter(e: React.MouseEvent<HTMLDivElement>) {
+    if (!enabled) return;
+    rectRef.current = e.currentTarget.getBoundingClientRect();
+  }
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    if (!enabled) return;
-    const rect = e.currentTarget.getBoundingClientRect();
+    if (!enabled || !rectRef.current) return;
+    const rect = rectRef.current;
     x.set((e.clientX - rect.left) / rect.width);
     y.set((e.clientY - rect.top) / rect.height);
   }
@@ -40,6 +46,7 @@ export function TiltCard({
 
   return (
     <motion.div
+      onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{

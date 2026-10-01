@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Ventures } from "@/components/sections/Ventures";
-import { getMergedVentures } from "@/lib/content";
+import { ventures } from "@/content/ventures";
 
 export const metadata: Metadata = { title: "Ventures" };
 
-export default async function VenturesPage() {
-  const ventures = await getMergedVentures();
+export default function VenturesPage() {
   return <Ventures ventures={ventures} />;
 }
