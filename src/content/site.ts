@@ -1,16 +1,12 @@
 export const site = {
   name: "Sanket Bhatt",
   role: "Computer Science Student",
+  roleLine: "Computer Science student · University of Windsor",
+  availability: "Seeking Summer 2027 co-op · Software / IT",
   location: "Windsor, Ontario, Canada",
   origin: "Ahmedabad, India",
-  taglines: [
-    "CS Student",
-    "AI Enthusiast",
-    "Web Developer",
-    "Creator",
-  ],
   shortIntro:
-    "First-year Honours BCS student at the University of Windsor, specializing in AI. I build things on the web and make music on the side.",
+    "I build web applications and teach first-year programming labs. Currently studying AI with a minor in Math.",
   email: "sanketbhatt006@gmail.com",
   social: {
     github: "https://github.com/Sanket0006",

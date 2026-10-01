@@ -1,151 +1,94 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
-import { ArrowDown, Mail } from "lucide-react";
-import { MagneticButton } from "@/components/ui/MagneticButton";
-
-const ROTATE_MS = 2200;
-
-function RotatingTagline({ taglines }: { taglines: string[] }) {
-  const [index, setIndex] = useState(0);
-  const prefersReducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((i) => (i + 1) % taglines.length);
-    }, ROTATE_MS);
-    return () => clearInterval(timer);
-  }, [taglines]);
-
-  return (
-    <span className="relative inline-block h-[1.4em] min-w-[11ch] align-bottom">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={taglines[index]}
-          initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={prefersReducedMotion ? undefined : { opacity: 0, y: -12 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute left-0 top-0 text-accent"
-        >
-          {taglines[index]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  );
-}
-
-function AnimatedName({ name }: { name: string }) {
-  const prefersReducedMotion = useReducedMotion();
-  const letters = name.split("");
-
-  return (
-    <motion.h1
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: {},
-        visible: {
-          transition: { staggerChildren: prefersReducedMotion ? 0 : 0.035, delayChildren: 0.15 },
-        },
-      }}
-      className="font-display text-5xl font-medium tracking-tight sm:text-7xl"
-    >
-      {letters.map((letter, i) => (
-        <motion.span
-          key={i}
-          variants={{
-            hidden: { opacity: 0, y: 24 },
-            visible: {
-              opacity: 1,
-              y: 0,
-              transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
-            },
-          }}
-          className="inline-block text-gradient"
-        >
-          {letter === " " ? " " : letter}
-        </motion.span>
-      ))}
-    </motion.h1>
-  );
-}
+import { motion, useReducedMotion } from "framer-motion";
+import { Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/BrandIcons";
 
 type HeroProps = {
   name: string;
-  taglines: string[];
-  shortIntro: string;
+  roleLine: string;
+  availability: string;
+  intro: string;
+  email: string;
+  github: string;
+  linkedin: string;
 };
 
-export function Hero({ name, taglines, shortIntro }: HeroProps) {
+export function Hero({ name, roleLine, availability, intro, email, github, linkedin }: HeroProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section className="relative flex min-h-screen flex-col justify-center px-5 pt-24 sm:px-8">
-      <div className="mx-auto w-full max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-muted"
-        >
-          Portfolio
-        </motion.div>
-
-        <AnimatedName name={name} />
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-4 font-display text-xl text-muted sm:text-2xl"
-        >
-          <RotatingTagline taglines={taglines} />
-        </motion.div>
-
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-6 max-w-xl leading-relaxed text-muted"
-        >
-          {shortIntro}
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.7 }}
-          className="mt-9 flex flex-wrap items-center gap-4"
-        >
-          <MagneticButton
-            href="/work"
-            className="bg-foreground text-background hover:opacity-90"
-          >
-            View work
-          </MagneticButton>
-          <MagneticButton
-            href="/contact"
-            className="glass hover:border-accent"
-          >
-            <Mail size={15} />
-            Get in touch
-          </MagneticButton>
-        </motion.div>
-      </div>
-
+    <section className="relative px-5 pt-28 pb-16 sm:px-8 sm:pt-36 sm:pb-20">
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 1.1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        initial={prefersReducedMotion ? false : { opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mx-auto w-full max-w-6xl"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="text-muted"
-        >
-          <ArrowDown size={18} />
-        </motion.div>
+        {availability && (
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-accent">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+            {availability}
+          </div>
+        )}
+
+        <h1 className="font-display text-5xl font-medium tracking-tight text-gradient sm:text-7xl">
+          {name}
+        </h1>
+
+        <div className="mt-4 text-lg text-muted sm:text-xl">{roleLine}</div>
+
+        <p className="mt-5 max-w-xl leading-relaxed text-muted">{intro}</p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-4">
+          <a
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener"
+            data-cursor-magnet
+            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          >
+            Resume
+          </a>
+          <a
+            href="#projects"
+            data-cursor-magnet
+            className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium transition-colors hover:border-accent"
+          >
+            View projects
+          </a>
+        </div>
+
+        <div className="mt-8 flex items-center gap-3">
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener"
+            aria-label="GitHub"
+            data-cursor-magnet
+            className="flex h-9 w-9 items-center justify-center rounded-full glass text-muted transition-colors hover:border-accent hover:text-foreground"
+          >
+            <GithubIcon size={16} />
+          </a>
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noopener"
+            aria-label="LinkedIn"
+            data-cursor-magnet
+            className="flex h-9 w-9 items-center justify-center rounded-full glass text-muted transition-colors hover:border-accent hover:text-foreground"
+          >
+            <LinkedinIcon size={16} />
+          </a>
+          <a
+            href={`mailto:${email}`}
+            aria-label="Email"
+            data-cursor-magnet
+            className="flex h-9 w-9 items-center justify-center rounded-full glass text-muted transition-colors hover:border-accent hover:text-foreground"
+          >
+            <Mail size={16} />
+          </a>
+        </div>
       </motion.div>
     </section>
   );

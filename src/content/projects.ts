@@ -13,9 +13,23 @@ export type Project = {
   image?: string;
 };
 
-// All entries below are placeholders — replace title/summary/links/tech with
-// your real projects. Keep the slug URL-friendly (lowercase, hyphenated).
+// Keep the slug URL-friendly (lowercase, hyphenated).
 export const projects: Project[] = [
+  {
+    slug: "isc-website",
+    title: "ISC Website",
+    summary:
+      "Ongoing maintenance and redesign of the International Student Centre's website at the University of Windsor.",
+    description:
+      "Part of my role as a Front Desk Representative at the ISC, helping maintain and redesign the centre's website to better serve international students.",
+    // [TODO: fill in once the redesign has concrete, nameable outcomes]
+    problem: "",
+    approach: "",
+    tech: [],
+    github: "",
+    live: "",
+    featured: true,
+  },
   {
     slug: "project-one",
     title: "[TODO: Project One Title]",

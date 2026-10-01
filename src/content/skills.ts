@@ -3,23 +3,11 @@ export type SkillGroup = {
   items: string[];
 };
 
-// Python and C are confirmed (from Harvard's CS50x / CS50P). Everything else
-// is a placeholder, replace with your real stack.
+// Python and C are from Harvard's CS50x / CS50P. Everything else is the
+// stack this site itself is built with, verifiable in the repo.
 export const skillGroups: SkillGroup[] = [
-  {
-    title: "Languages",
-    items: ["Python", "C", "[TODO: e.g. JavaScript]", "[TODO: e.g. TypeScript]"],
-  },
-  {
-    title: "Frameworks",
-    items: ["[TODO: e.g. Next.js]", "[TODO: e.g. React]", "[TODO]"],
-  },
-  {
-    title: "Tools",
-    items: ["[TODO: e.g. Git]", "[TODO: e.g. Figma]", "[TODO]"],
-  },
-  {
-    title: "Currently learning",
-    items: ["[TODO: e.g. Machine Learning]", "[TODO]"],
-  },
+  { title: "Languages", items: ["Python", "C", "TypeScript"] },
+  { title: "Frameworks", items: ["Next.js", "React", "Tailwind CSS"] },
+  { title: "Tools", items: ["Git", "GitHub", "Vercel"] },
+  { title: "Currently learning", items: ["Java", "SwiftUI"] },
 ];

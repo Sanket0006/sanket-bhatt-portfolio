@@ -55,16 +55,18 @@ export default async function ProjectPage({
           {project.summary}
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.tech.map((t, i) => (
-            <span
-              key={`${project.slug}-tech-${i}`}
-              className="rounded-full border border-surface-border px-3 py-1 text-xs text-muted"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
+        {project.tech.length > 0 && (
+          <div className="mt-6 flex flex-wrap gap-2">
+            {project.tech.map((t, i) => (
+              <span
+                key={`${project.slug}-tech-${i}`}
+                className="rounded-full border border-surface-border px-3 py-1 text-xs text-muted"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
 
         <div className="mt-6 flex flex-wrap gap-3">
           {validLink(project.github) && (
@@ -104,14 +106,18 @@ export default async function ProjectPage({
               {project.description}
             </p>
           </div>
-          <div>
-            <h2 className="font-display text-xl font-medium">The problem</h2>
-            <p className="mt-3 leading-relaxed text-muted">{project.problem}</p>
-          </div>
-          <div>
-            <h2 className="font-display text-xl font-medium">Approach</h2>
-            <p className="mt-3 leading-relaxed text-muted">{project.approach}</p>
-          </div>
+          {project.problem && (
+            <div>
+              <h2 className="font-display text-xl font-medium">The problem</h2>
+              <p className="mt-3 leading-relaxed text-muted">{project.problem}</p>
+            </div>
+          )}
+          {project.approach && (
+            <div>
+              <h2 className="font-display text-xl font-medium">Approach</h2>
+              <p className="mt-3 leading-relaxed text-muted">{project.approach}</p>
+            </div>
+          )}
         </div>
       </Reveal>
     </article>

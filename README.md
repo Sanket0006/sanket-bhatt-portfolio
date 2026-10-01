@@ -33,6 +33,9 @@ src/
     sections/  # Hero, About, Skills, Projects, Experience, Education,
                # Extras, Contact (each is a reusable component; every
                # /page.tsx above just imports its content file and renders one)
+    home/      # landing-page-only sections: SelectedProjects,
+               # ExperienceSnapshot, Stack (condensed previews, not used
+               # on the dedicated /work, /experience, /skills pages)
     ui/        # shared building blocks (Reveal, TiltCard, MagneticButton, …)
   content/     # ALL site content, this is what you edit
 ```
@@ -45,7 +48,7 @@ Everything is in `src/content/`:
 
 | File | What it controls |
 |---|---|
-| `site.ts` | Name, taglines, email, social links, nav, quick facts, Formspree ID |
+| `site.ts` | Name, hero copy, availability line, email, social links, nav, quick facts, Formspree ID |
 | `about.ts` | Bio paragraphs, photo path |
 | `projects.ts` | The 4 project cards + their detail pages |
 | `skills.ts` | Skill groups (Languages, Frameworks, Tools, Currently Learning) |
@@ -55,9 +58,10 @@ Everything is in `src/content/`:
 
 To add an image (photo, project cover, transcript PDF): drop the file in `/public`, then reference its path as a string (e.g. `/profile.jpg`) in the relevant content file.
 
-## Transcript & certificate links
+## Transcript, resume & certificate links
 
 - **Transcript:** `sanketbhatt.com/transcript.pdf` is served automatically by Next.js if a file exists at `public/transcript.pdf`, just drop the file there, no code change needed. If it's missing, that URL falls through to the custom 404 page.
+- **Resume:** same pattern, `sanketbhatt.com/resume.pdf` is whatever file you drop at `public/resume.pdf`. Linked from the Hero's "Resume" button and the Contact section's "Download resume" link.
 - **Certificates:** `education.ts` entries have an optional `credentialUrl` + `credentialLabel`. The University of Windsor entry points at `/transcript.pdf`; the CS50x/CS50P entries point directly at their official `certificates.cs50.io` verification links.
 
 ## Run locally
@@ -79,12 +83,11 @@ Opens at `http://localhost:3000`. Not required day-to-day, the normal workflow i
 ## Content checklist (TODO)
 
 - [ ] **About** → your photo (`src/content/about.ts` → `photoUrl`)
-- [ ] **Skills** → Frameworks, Tools, Currently Learning (Languages already has Python & C from CS50)
-- [ ] **Projects** → 4 placeholder projects: title, summary, overview, problem, approach, tech stack, GitHub URL, live URL
-- [ ] **Experience** → real dates for both entries (`src/content/experience.ts` → `period`)
+- [ ] **Projects** → the 4 generic placeholder projects still need real title/summary/tech/links, or delete them if you don't need that many slots. ISC Website is real but still missing `tech`, `github`/`live` (hidden until filled), and `problem`/`approach` (hidden until filled)
 - [ ] **Extras** → Stratosphere page URL (`src/content/extras.ts` → `href`)
 - [ ] **Contact** → Formspree form ID (`src/content/site.ts` → `formspreeId`) so the contact form actually sends
 - [ ] **Transcript** → drop the PDF at `public/transcript.pdf`
+- [ ] **Resume** → drop the PDF at `public/resume.pdf` (the Hero "Resume" button and Contact "Download resume" link both point here)
 
 ## Notes
 
