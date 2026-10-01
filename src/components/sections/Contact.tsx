@@ -126,16 +126,16 @@ export function Contact({ email, social, formspreeId }: ContactProps) {
               </MagneticButton>
 
               {status === "sent" && (
-                <p className="text-sm text-accent-2">Thanks — I&apos;ll get back to you soon.</p>
+                <p className="text-sm text-accent-2">Thanks! I&apos;ll get back to you soon.</p>
               )}
               {status === "error" && (
                 <p className="text-sm text-red-400">
-                  Something went wrong — email me directly instead.
+                  Something went wrong. Email me directly instead.
                 </p>
               )}
               {status === "not-configured" && (
                 <p className="text-sm text-muted">
-                  [TODO: this form isn&apos;t wired up yet — add your
+                  [TODO: this form isn&apos;t wired up yet. Add your
                   Formspree form ID to <code>formspreeId</code> in{" "}
                   <code>src/content/site.ts</code>.] In the meantime, email
                   me directly below.

@@ -10,7 +10,7 @@ export const site = {
     "Creator",
   ],
   shortIntro:
-    "First-year Honours BCS student at the University of Windsor, specializing in AI — building things on the web and making music on the side.",
+    "First-year Honours BCS student at the University of Windsor, specializing in AI. I build things on the web and make music on the side.",
   email: "sanketbhatt006@gmail.com",
   social: {
     github: "https://github.com/Sanket0006",
@@ -24,6 +24,7 @@ export const site = {
     { label: "About", href: "/about" },
     { label: "Skills", href: "/skills" },
     { label: "Work", href: "/work" },
+    { label: "Experience", href: "/experience" },
     { label: "Ventures", href: "/ventures" },
     { label: "Education", href: "/education" },
     { label: "Music", href: "/music" },

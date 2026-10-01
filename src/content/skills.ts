@@ -4,7 +4,7 @@ export type SkillGroup = {
 };
 
 // Python and C are confirmed (from Harvard's CS50x / CS50P). Everything else
-// is a placeholder — replace with your real stack.
+// is a placeholder, replace with your real stack.
 export const skillGroups: SkillGroup[] = [
   {
     title: "Languages",
@@ -22,14 +22,4 @@ export const skillGroups: SkillGroup[] = [
     title: "Currently learning",
     items: ["[TODO: e.g. Machine Learning]", "[TODO]"],
   },
-];
-
-// Marquee strip — short labels only, keep this list in sync with the groups above.
-export const skillMarquee: string[] = [
-  "Python",
-  "C",
-  "[TODO]",
-  "[TODO]",
-  "[TODO]",
-  "[TODO]",
 ];

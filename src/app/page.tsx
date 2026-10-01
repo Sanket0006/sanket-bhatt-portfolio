@@ -8,9 +8,10 @@ const explore = [
   { href: "/about", label: "About", desc: "Background, quick facts, and what I care about." },
   { href: "/skills", label: "Skills", desc: "Languages, frameworks, tools, and what I'm learning." },
   { href: "/work", label: "Work", desc: "Selected projects, from idea to build." },
+  { href: "/experience", label: "Experience", desc: "Campus roles and hands-on teaching work." },
   { href: "/ventures", label: "Ventures", desc: "Apex Web Solution and Stratosphere." },
   { href: "/education", label: "Education", desc: "University, certifications, and transcript." },
-  { href: "/music", label: "Music", desc: "Electronic music — coming soon." },
+  { href: "/music", label: "Music", desc: "Electronic music, coming soon." },
   { href: "/contact", label: "Contact", desc: "Get in touch, or find me elsewhere." },
 ];
 
@@ -24,7 +25,7 @@ export default function Home() {
           <div className="mb-12 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
             Explore
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {explore.map((item, i) => (
               <Reveal key={item.href} direction="up" delay={i * 0.05}>
                 <Link

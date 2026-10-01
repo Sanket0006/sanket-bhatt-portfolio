@@ -13,7 +13,7 @@ export function Projects({ projects }: { projects: Project[] }) {
         <SectionHeading
           eyebrow="Selected work"
           title="Projects"
-          description="Edit these in src/content/projects.ts — until then, placeholder cards are shown."
+          description="Edit these in src/content/projects.ts. Until then, placeholder cards are shown."
         />
 
         <div className="grid gap-6 sm:grid-cols-2">

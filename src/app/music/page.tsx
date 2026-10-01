@@ -3,7 +3,7 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Music",
-  description: "Sanket Bhatt's music — coming soon.",
+  description: "Sanket Bhatt's music, coming soon.",
 };
 
 export default function MusicPage() {

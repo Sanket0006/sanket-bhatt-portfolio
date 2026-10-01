@@ -12,7 +12,7 @@ export function Skills({ skillGroups }: { skillGroups: SkillGroup[] }) {
         <SectionHeading
           eyebrow="Skills"
           title="What I work with"
-          description="Python and C are confirmed from Harvard's CS50 — everything else is a placeholder until the real stack is filled in."
+          description="Python and C are confirmed from Harvard's CS50. Everything else is a placeholder until the real stack is filled in."
         />
 
         <div className="mb-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
