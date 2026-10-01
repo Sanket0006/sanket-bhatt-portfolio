@@ -17,7 +17,7 @@ export const ventures: Venture[] = [
     name: "Stratosphere",
     role: "Founder",
     description:
-      "An aviation content brand I started, sharing aviation stories, insights, and media.",
+      "An aviation content page I started, sharing aviation stories, insights, and media.",
     href: "[TODO: Stratosphere URL]",
   },
 ];
