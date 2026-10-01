@@ -10,9 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/skills",
     "/work",
     "/experience",
-    "/ventures",
     "/education",
     "/music",
+    "/extras",
     "/contact",
   ].map((path) => ({
     url: `${siteUrl}${path}`,

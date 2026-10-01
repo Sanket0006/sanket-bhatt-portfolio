@@ -25,9 +25,8 @@ export const site = {
     { label: "Skills", href: "/skills" },
     { label: "Work", href: "/work" },
     { label: "Experience", href: "/experience" },
-    { label: "Ventures", href: "/ventures" },
     { label: "Education", href: "/education" },
-    { label: "Music", href: "/music" },
+    { label: "Extras", href: "/extras" },
     { label: "Contact", href: "/contact" },
   ],
   quickFacts: [

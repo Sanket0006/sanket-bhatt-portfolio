@@ -20,9 +20,9 @@ src/
     skills/             # /skills
     work/                # /work: project list (cards link to /projects/[slug])
     experience/          # /experience: work history
-    ventures/            # /ventures
     education/           # /education: transcript + certificate links live here
     music/               # /music: "coming soon"
+    extras/              # /extras: music + aviation, linked as one nav item
     contact/             # /contact
     projects/[slug]/     # project detail pages
     not-found.tsx        # custom 404 ("Lost in the clouds")
@@ -30,14 +30,14 @@ src/
                           # cursor, background, scroll effects
   components/
     layout/    # header, footer, cursor, scroll effects, theme toggle
-    sections/  # Hero, About, Skills, Projects, Experience, Ventures,
-               # Education, Contact (each is a reusable component; every
+    sections/  # Hero, About, Skills, Projects, Experience, Education,
+               # Extras, Contact (each is a reusable component; every
                # /page.tsx above just imports its content file and renders one)
     ui/        # shared building blocks (Reveal, TiltCard, MagneticButton, …)
   content/     # ALL site content, this is what you edit
 ```
 
-Nav order: About, Skills, Work, Experience, Ventures, Education, Music, Contact.
+Nav order: About, Skills, Work, Experience, Education, Extras, Contact.
 
 ## Editing content
 
@@ -50,8 +50,8 @@ Everything is in `src/content/`:
 | `projects.ts` | The 4 project cards + their detail pages |
 | `skills.ts` | Skill groups (Languages, Frameworks, Tools, Currently Learning) |
 | `experience.ts` | Work history entries |
-| `ventures.ts` | Apex Web Solution, Stratosphere |
 | `education.ts` | School/certifications, including the transcript and certificate links |
+| `extras.ts` | Music and Stratosphere (aviation content page) |
 
 To add an image (photo, project cover, transcript PDF): drop the file in `/public`, then reference its path as a string (e.g. `/profile.jpg`) in the relevant content file.
 
@@ -82,7 +82,7 @@ Opens at `http://localhost:3000`. Not required day-to-day, the normal workflow i
 - [ ] **Skills** → Frameworks, Tools, Currently Learning (Languages already has Python & C from CS50)
 - [ ] **Projects** → 4 placeholder projects: title, summary, overview, problem, approach, tech stack, GitHub URL, live URL
 - [ ] **Experience** → real dates for both entries (`src/content/experience.ts` → `period`)
-- [ ] **Ventures** → Apex Web Solution and Stratosphere website URLs
+- [ ] **Extras** → Stratosphere page URL (`src/content/extras.ts` → `href`)
 - [ ] **Contact** → Formspree form ID (`src/content/site.ts` → `formspreeId`) so the contact form actually sends
 - [ ] **Transcript** → drop the PDF at `public/transcript.pdf`
 

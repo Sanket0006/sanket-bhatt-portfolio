@@ -9,9 +9,8 @@ const explore = [
   { href: "/skills", label: "Skills", desc: "Languages, frameworks, tools, and what I'm learning." },
   { href: "/work", label: "Work", desc: "Selected projects, from idea to build." },
   { href: "/experience", label: "Experience", desc: "Campus roles and hands-on teaching work." },
-  { href: "/ventures", label: "Ventures", desc: "Apex Web Solution and Stratosphere." },
   { href: "/education", label: "Education", desc: "University, certifications, and transcript." },
-  { href: "/music", label: "Music", desc: "Electronic music, coming soon." },
+  { href: "/extras", label: "Extras", desc: "Music and aviation, just for fun." },
   { href: "/contact", label: "Contact", desc: "Get in touch, or find me elsewhere." },
 ];
 
