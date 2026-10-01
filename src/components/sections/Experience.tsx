@@ -27,7 +27,7 @@ export function Experience({ experience }: ExperienceProps) {
                     <Briefcase size={17} />
                   </div>
                   <div>
-                    <div className="text-xs uppercase tracking-wider text-accent">
+                    <div className="text-xs font-medium text-accent">
                       {entry.period}
                     </div>
                     <h3 className="mt-1 font-display text-lg font-medium">
