@@ -5,21 +5,21 @@ export type ExperienceEntry = {
   description: string;
 };
 
+// Ordered like a stack: most recently pushed (TA) on top, first-in (Front
+// Desk) at the bottom.
 export const experience: ExperienceEntry[] = [
-  {
-    title: "Front Desk Receptionist",
-    org: "ISC, Ignite Work Study Program, University of Windsor",
-    // [TODO: add the actual dates for this role]
-    period: "[TODO: add dates]",
-    description:
-      "First point of contact at the ISC front desk, handling visitor and student inquiries, scheduling, and day-to-day office support through the Ignite Work Study program.",
-  },
   {
     title: "Teaching Assistant, COMP-1400",
     org: "University of Windsor",
-    // [TODO: add the actual dates for this role]
-    period: "[TODO: add dates]",
+    period: "October–Present",
     description:
       "Supported the course through lab instruction, assignment grading, exam proctoring, and one-on-one tutoring, helping students build confidence with foundational programming concepts.",
+  },
+  {
+    title: "Front Desk Receptionist",
+    org: "International Student Centre, University of Windsor",
+    period: "September–Present",
+    description:
+      "First point of contact at the ISC front desk, handling visitor and student inquiries, scheduling, and day-to-day office support through the Ignite Work Study program.",
   },
 ];
