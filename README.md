@@ -58,10 +58,10 @@ Everything is in `src/content/`:
 
 To add an image (photo, project cover, transcript PDF): drop the file in `/public`, then reference its path as a string (e.g. `/profile.jpg`) in the relevant content file.
 
-## Transcript, resume & certificate links
+## Transcript, CV & certificate links
 
 - **Transcript:** `sanketbhatt.com/transcript.pdf` is served automatically by Next.js if a file exists at `public/transcript.pdf`, just drop the file there, no code change needed. If it's missing, that URL falls through to the custom 404 page.
-- **Resume:** same pattern, `sanketbhatt.com/resume.pdf` is whatever file you drop at `public/resume.pdf`. Linked from the Hero's "Resume" button and the Contact section's "Download resume" link.
+- **CV:** drop your CV at `public/cv.pdf`. The Hero "CV" button and the Contact section's "Download CV" link only appear once that file exists (checked at build time, so adding the file and pushing is enough). The CV is the same for every application, so there is no separate resume.
 - **Certificates:** `education.ts` entries have an optional `credentialUrl` + `credentialLabel`. The University of Windsor entry points at `/transcript.pdf`; the CS50x/CS50P entries point directly at their official `certificates.cs50.io` verification links.
 
 ## Run locally
@@ -87,7 +87,7 @@ Opens at `http://localhost:3000`. Not required day-to-day, the normal workflow i
 - [ ] **Extras** → Stratosphere page URL (`src/content/extras.ts` → `href`)
 - [ ] **Contact** → Formspree form ID (`src/content/site.ts` → `formspreeId`) so the contact form actually sends
 - [ ] **Transcript** → drop the PDF at `public/transcript.pdf`
-- [ ] **Resume** → drop the PDF at `public/resume.pdf` (the Hero "Resume" button and Contact "Download resume" link both point here)
+- [ ] **CV** → drop the PDF at `public/cv.pdf` (the CV buttons stay hidden until it exists)
 
 ## Notes
 

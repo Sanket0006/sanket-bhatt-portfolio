@@ -34,9 +34,29 @@ export function Experience({ experience }: ExperienceProps) {
                       {entry.title}
                     </h3>
                     <div className="mt-1 text-sm text-muted">{entry.org}</div>
-                    <p className="mt-2 text-sm leading-relaxed text-muted">
-                      {entry.description}
-                    </p>
+                    {entry.bullets && entry.bullets.length > 0 ? (
+                      <ul className="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-muted marker:text-accent">
+                        {entry.bullets.map((b) => (
+                          <li key={b}>{b}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="mt-2 text-sm leading-relaxed text-muted">
+                        {entry.description}
+                      </p>
+                    )}
+                    {entry.skills && entry.skills.length > 0 && (
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {entry.skills.map((s) => (
+                          <span
+                            key={s}
+                            className="rounded-full border border-surface-border px-2.5 py-1 text-xs text-muted"
+                          >
+                            {s}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </div>
               </TiltCard>

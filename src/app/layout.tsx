@@ -7,7 +7,6 @@ import { AmbientBackground } from "@/components/layout/AmbientBackground";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { LoadingIntro } from "@/components/layout/LoadingIntro";
 import { PageTransition } from "@/components/layout/PageTransition";
 
 const inter = Inter({
@@ -67,7 +66,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="relative min-h-screen">
         <ThemeProvider>
-          <LoadingIntro />
           <ScrollProgress />
           <AmbientBackground />
           <Header />

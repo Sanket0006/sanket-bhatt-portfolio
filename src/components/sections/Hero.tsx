@@ -12,9 +12,10 @@ type HeroProps = {
   email: string;
   github: string;
   linkedin: string;
+  cvHref?: string;
 };
 
-export function Hero({ name, roleLine, availability, intro, email, github, linkedin }: HeroProps) {
+export function Hero({ name, roleLine, availability, intro, email, github, linkedin, cvHref }: HeroProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -41,14 +42,16 @@ export function Hero({ name, roleLine, availability, intro, email, github, linke
         <p className="mt-5 max-w-xl leading-relaxed text-muted">{intro}</p>
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener"
-            className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
-          >
-            Resume
-          </a>
+          {cvHref && (
+            <a
+              href={cvHref}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
+            >
+              CV
+            </a>
+          )}
           <a
             href="#projects"
             className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium transition-colors hover:border-accent"

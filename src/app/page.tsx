@@ -1,14 +1,7 @@
+import fs from "node:fs";
+import path from "node:path";
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  User,
-  Terminal,
-  Code2,
-  GraduationCap,
-  Sparkles,
-  Mail,
-  FileDown,
-} from "lucide-react";
+import { Mail, FileDown } from "lucide-react";
 import { Hero } from "@/components/sections/Hero";
 import { SelectedProjects } from "@/components/home/SelectedProjects";
 import { ExperienceSnapshot } from "@/components/home/ExperienceSnapshot";
@@ -21,12 +14,17 @@ import { experience } from "@/content/experience";
 import { skillGroups } from "@/content/skills";
 
 const explore = [
-  { href: "/about", label: "About", desc: "Background, quick facts, and what I care about.", icon: User },
-  { href: "/skills", label: "Skills", desc: "Languages, frameworks, tools, and what I'm learning.", icon: Terminal },
-  { href: "/work", label: "Work", desc: "Selected projects, from idea to build.", icon: Code2 },
-  { href: "/education", label: "Education", desc: "University, certifications, and transcript.", icon: GraduationCap },
-  { href: "/extras", label: "Extras", desc: "Music and aviation, just for fun.", icon: Sparkles },
+  { href: "/about", label: "About" },
+  { href: "/skills", label: "Skills" },
+  { href: "/work", label: "Work" },
+  { href: "/education", label: "Education" },
+  { href: "/extras", label: "Extras" },
 ];
+
+// The CV buttons only render once public/cv.pdf exists, so the page never
+// ships a dead link. Checked at build time; adding the file triggers a deploy.
+const CV_HREF = "/cv.pdf";
+const hasCv = fs.existsSync(path.join(process.cwd(), "public", "cv.pdf"));
 
 export default function Home() {
   return (
@@ -39,6 +37,7 @@ export default function Home() {
         email={site.email}
         github={site.social.github}
         linkedin={site.social.linkedin}
+        cvHref={hasCv ? CV_HREF : undefined}
       />
 
       <SelectedProjects projects={projects} />
@@ -47,39 +46,22 @@ export default function Home() {
 
       <Stack skillGroups={skillGroups} />
 
-      <section className="px-5 py-20 sm:px-8">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-10 text-xs font-semibold uppercase tracking-[0.25em] text-accent">
+      <section className="px-5 py-10 sm:px-8">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-6 gap-y-3">
+          <div className="text-xs font-semibold uppercase tracking-[0.25em] text-accent">
             Explore
           </div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {explore.map((item, i) => {
-              const Icon = item.icon;
-              return (
-                <Reveal key={item.href} direction="up" delay={i * 0.06}>
-                  <Link
-                    href={item.href}
-                    className="group flex h-full flex-col justify-between rounded-2xl glass p-6 transition-[transform,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-accent"
-                  >
-                    <div>
-                      <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/15 text-accent">
-                        <Icon size={18} />
-                      </div>
-                      <div className="mb-1.5 flex items-start justify-between gap-3">
-                        <h3 className="font-display text-lg font-medium">{item.label}</h3>
-                        <ArrowUpRight
-                          size={16}
-                          className="mt-1 shrink-0 text-muted transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
-                        />
-                      </div>
-                      <p className="text-sm leading-relaxed text-muted">{item.desc}</p>
-                    </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
-          </div>
+          <nav aria-label="Explore" className="flex flex-wrap gap-x-5 gap-y-2">
+            {explore.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="text-sm text-muted transition-colors hover:text-accent"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
         </div>
       </section>
 
@@ -106,15 +88,17 @@ export default function Home() {
                       <Mail size={15} />
                       {site.email}
                     </a>
-                    <a
-                      href="/resume.pdf"
-                      target="_blank"
-                      rel="noopener"
-                      className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium transition-colors hover:border-accent"
-                    >
-                      <FileDown size={15} />
-                      Download resume
-                    </a>
+                    {hasCv && (
+                      <a
+                        href={CV_HREF}
+                        target="_blank"
+                        rel="noopener"
+                        className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium transition-colors hover:border-accent"
+                      >
+                        <FileDown size={15} />
+                        Download CV
+                      </a>
+                    )}
                   </div>
                   <div className="flex items-center gap-3">
                     <a

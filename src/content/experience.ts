@@ -2,7 +2,12 @@ export type ExperienceEntry = {
   title: string;
   org: string;
   period: string;
+  /** One-line summary, used in the compact landing-page list. */
   description: string;
+  /** Optional detail bullets, shown on the full Experience page. */
+  bullets?: string[];
+  /** Optional skills used in the role, shown as chips on the full page. */
+  skills?: string[];
 };
 
 // Most recent first.
@@ -19,7 +24,13 @@ export const experience: ExperienceEntry[] = [
     org: "International Student Centre, University of Windsor",
     period: "September 2026 - Present",
     description:
-      "Student-facing support at the ISC front desk through the Ignite Work Study program, alongside maintaining and redesigning the centre's website.",
+      "Frontline support for international students, plus maintaining and redesigning the Centre's Drupal 7 website.",
+    bullets: [
+      "Provide frontline support to international students on immigration, health insurance and general enquiries.",
+      "Maintain and redesign the Centre's Drupal 7 website in line with university brand and accessibility (AODA/WCAG) standards.",
+      "Leading a redesign of the homepage navigation to make key student services easier to find.",
+    ],
+    skills: ["Drupal 7", "HTML/CSS", "Bootstrap", "Web Accessibility", "Student Services"],
   },
   {
     title: "Peer Mentor",

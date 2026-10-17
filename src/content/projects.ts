@@ -25,7 +25,7 @@ export const projects: Project[] = [
     // [TODO: fill in once the redesign has concrete, nameable outcomes]
     problem: "",
     approach: "",
-    tech: [],
+    tech: ["Drupal 7", "HTML/CSS", "Bootstrap"],
     github: "",
     live: "",
     featured: true,

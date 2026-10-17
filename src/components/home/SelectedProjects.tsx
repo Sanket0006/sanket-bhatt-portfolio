@@ -12,7 +12,6 @@ const cardClass =
 
 export function SelectedProjects({ projects }: { projects: Project[] }) {
   const real = projects.filter(isReal).slice(0, 2);
-  const showTeaser = real.length < 3;
 
   return (
     <section id="projects" className="scroll-mt-24 px-5 py-20 sm:px-8">
@@ -28,7 +27,7 @@ export function SelectedProjects({ projects }: { projects: Project[] }) {
           </Link>
         </div>
 
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className={real.length > 1 ? "grid gap-5 sm:grid-cols-2 lg:grid-cols-3" : "grid max-w-2xl gap-5"}>
           {real.map((project, i) => (
             <Reveal key={project.slug} direction="up" delay={i * 0.06}>
               <div className={cardClass}>
@@ -82,21 +81,6 @@ export function SelectedProjects({ projects }: { projects: Project[] }) {
               </div>
             </Reveal>
           ))}
-
-          {showTeaser && (
-            <Reveal direction="up" delay={real.length * 0.06}>
-              <Link
-                href="/work"
-                className="flex h-full flex-col justify-center rounded-2xl border border-dashed border-surface-border p-6 text-sm text-muted transition-colors duration-200 ease-out hover:border-accent hover:text-foreground"
-              >
-                More projects on the way.
-                <span className="mt-2 inline-flex items-center gap-1 text-accent">
-                  View all
-                  <ArrowRight size={12} />
-                </span>
-              </Link>
-            </Reveal>
-          )}
         </div>
       </div>
     </section>
