@@ -152,7 +152,6 @@ export function Contact({ email, social, formspreeId }: ContactProps) {
                 </div>
                 <a
                   href={`mailto:${email}`}
-                  data-cursor-magnet
                   className="font-display text-2xl font-medium transition-colors hover:text-accent"
                 >
                   {email}
@@ -171,7 +170,6 @@ export function Contact({ email, social, formspreeId }: ContactProps) {
                       target="_blank"
                       rel="noopener"
                       aria-label={label}
-                      data-cursor-magnet
                       className="flex h-10 w-10 items-center justify-center rounded-full glass text-muted transition-colors hover:border-accent hover:text-foreground"
                     >
                       <Icon size={16} />

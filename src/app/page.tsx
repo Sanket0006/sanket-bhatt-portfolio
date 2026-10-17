@@ -101,7 +101,6 @@ export default function Home() {
                   <div className="flex flex-wrap items-center justify-center gap-3 sm:justify-end">
                     <a
                       href={`mailto:${site.email}`}
-                      data-cursor-magnet
                       className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
                     >
                       <Mail size={15} />
@@ -111,7 +110,6 @@ export default function Home() {
                       href="/resume.pdf"
                       target="_blank"
                       rel="noopener"
-                      data-cursor-magnet
                       className="inline-flex items-center gap-2 rounded-full glass px-6 py-3 text-sm font-medium transition-colors hover:border-accent"
                     >
                       <FileDown size={15} />
@@ -124,7 +122,6 @@ export default function Home() {
                       target="_blank"
                       rel="noopener"
                       aria-label="GitHub"
-                      data-cursor-magnet
                       className="flex h-9 w-9 items-center justify-center rounded-full glass text-muted transition-colors hover:border-accent hover:text-foreground"
                     >
                       <GithubIcon size={16} />
@@ -134,7 +131,6 @@ export default function Home() {
                       target="_blank"
                       rel="noopener"
                       aria-label="LinkedIn"
-                      data-cursor-magnet
                       className="flex h-9 w-9 items-center justify-center rounded-full glass text-muted transition-colors hover:border-accent hover:text-foreground"
                     >
                       <LinkedinIcon size={16} />

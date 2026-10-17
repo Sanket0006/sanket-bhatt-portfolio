@@ -81,13 +81,6 @@ body {
   background: var(--muted);
 }
 
-/* Hide native cursor when the custom cursor is active (fine pointer, motion allowed) */
-html.has-custom-cursor,
-html.has-custom-cursor a,
-html.has-custom-cursor button {
-  cursor: none;
-}
-
 .text-gradient {
   background: linear-gradient(120deg, var(--foreground) 30%, var(--accent-2) 75%, var(--accent) 100%);
   background-clip: text;

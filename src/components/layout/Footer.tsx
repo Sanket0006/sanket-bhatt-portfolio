@@ -35,7 +35,6 @@ export function Footer({
               target={href.startsWith("http") ? "_blank" : undefined}
               rel={href.startsWith("http") ? "noopener" : undefined}
               aria-label={label}
-              data-cursor-magnet
               className="flex h-9 w-9 items-center justify-center rounded-full glass text-muted transition-colors hover:border-accent hover:text-foreground"
             >
               <Icon size={16} />

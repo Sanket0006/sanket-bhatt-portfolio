@@ -34,7 +34,6 @@ export function Education({ education }: EducationProps) {
                   href={entry.credentialUrl}
                   target="_blank"
                   rel="noopener"
-                  data-cursor-magnet
                   className="mt-3 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs transition-colors hover:border-accent"
                 >
                   <FileText size={13} />

@@ -25,7 +25,6 @@ export function ThemeToggle() {
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      data-cursor-magnet
       className="relative flex h-9 w-9 items-center justify-center rounded-full glass transition-colors hover:border-accent"
     >
       <AnimatePresence mode="wait" initial={false}>

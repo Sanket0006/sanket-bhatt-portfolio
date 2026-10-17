@@ -60,7 +60,6 @@ export function SelectedProjects({ projects }: { projects: Project[] }) {
                         href={project.live}
                         target="_blank"
                         rel="noopener"
-                        data-cursor-magnet
                         className="inline-flex items-center gap-1 text-accent hover:underline"
                       >
                         Live
@@ -72,7 +71,6 @@ export function SelectedProjects({ projects }: { projects: Project[] }) {
                         href={project.github}
                         target="_blank"
                         rel="noopener"
-                        data-cursor-magnet
                         className="inline-flex items-center gap-1 text-muted transition-colors hover:text-foreground"
                       >
                         <GithubIcon size={12} />

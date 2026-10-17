@@ -32,7 +32,6 @@ export function Header({ name = site.name }: { name?: string }) {
       <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <Link
           href="/"
-          data-cursor-magnet
           className="flex items-center gap-2 font-display text-lg font-medium"
         >
           <Image
@@ -50,7 +49,6 @@ export function Header({ name = site.name }: { name?: string }) {
             <Link
               key={item.href}
               href={item.href}
-              data-cursor-magnet
               className="text-sm text-muted transition-colors hover:text-foreground"
             >
               {item.label}

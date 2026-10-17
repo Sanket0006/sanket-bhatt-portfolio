@@ -6,7 +6,7 @@ A personal portfolio built with Next.js (App Router), TypeScript, Tailwind CSS v
 
 - **Framework:** Next.js 16 (App Router) + TypeScript
 - **Styling:** Tailwind CSS v4
-- **Animation:** Framer Motion, Lenis (smooth scroll)
+- **Animation:** Framer Motion
 - **Contact form:** Formspree
 - **Hosting:** Vercel
 

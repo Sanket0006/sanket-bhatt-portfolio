@@ -40,7 +40,6 @@ export default function NotFound() {
 
         <Link
           href="/"
-          data-cursor-magnet
           className="mt-8 inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90"
         >
           <ArrowLeft size={14} />

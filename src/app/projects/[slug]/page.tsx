@@ -74,7 +74,6 @@ export default async function ProjectPage({
               href={project.github}
               target="_blank"
               rel="noopener"
-              data-cursor-magnet
               className="inline-flex items-center gap-2 rounded-full glass px-5 py-2.5 text-sm transition-colors hover:border-accent"
             >
               <GithubIcon size={14} />
@@ -86,7 +85,6 @@ export default async function ProjectPage({
               href={project.live}
               target="_blank"
               rel="noopener"
-              data-cursor-magnet
               className="inline-flex items-center gap-2 rounded-full bg-foreground px-5 py-2.5 text-sm text-background transition-opacity hover:opacity-90"
             >
               Live demo
