@@ -4,6 +4,8 @@ export type ExperienceEntry = {
   period: string;
   /** One-line summary, used in the compact landing-page list. */
   description: string;
+  /** Optional lead-in sentence above the bullets on the full Experience page. */
+  intro?: string;
   /** Optional detail bullets, shown on the full Experience page. */
   bullets?: string[];
   /** Optional skills used in the role, shown as chips on the full page. */
@@ -13,11 +15,19 @@ export type ExperienceEntry = {
 // Most recent first.
 export const experience: ExperienceEntry[] = [
   {
-    title: "Teaching Assistant, COMP-1400",
+    title: "Teaching Assistant, COMP 1400",
     org: "University of Windsor",
     period: "October 2026 - Present",
     description:
-      "Lab assistant and marker for introductory programming, supporting the course through lab instruction, assignment grading, exam proctoring, and one-on-one tutoring.",
+      "Lab assistant and marker for COMP 1400, an introductory C programming course.",
+    intro:
+      "Teaching Assistant for COMP 1400, an introductory C programming course, under Dr. Kalyani Selvarajah.",
+    bullets: [
+      "Assist students in weekly labs with C programming, debugging, and problem-solving.",
+      "Grade labs and assignments with clear feedback on code logic and style.",
+      "Reinforce core concepts: loops, functions, arrays, and pointers.",
+    ],
+    skills: ["C Programming", "Teaching", "Debugging", "Code Review", "Mentoring"],
   },
   {
     title: "Front Desk Representative",

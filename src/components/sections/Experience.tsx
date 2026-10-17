@@ -34,6 +34,9 @@ export function Experience({ experience }: ExperienceProps) {
                       {entry.title}
                     </h3>
                     <div className="mt-1 text-sm text-muted">{entry.org}</div>
+                    {entry.intro && (
+                      <p className="mt-2 text-sm leading-relaxed text-muted">{entry.intro}</p>
+                    )}
                     {entry.bullets && entry.bullets.length > 0 ? (
                       <ul className="mt-3 list-disc space-y-1.5 pl-4 text-sm leading-relaxed text-muted marker:text-accent">
                         {entry.bullets.map((b) => (
