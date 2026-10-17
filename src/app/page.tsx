@@ -33,6 +33,7 @@ export default function Home() {
         name={site.name}
         roleLine={site.roleLine}
         availability={site.availability}
+        statusNote={site.statusNote}
         intro={site.shortIntro}
         email={site.email}
         github={site.social.github}

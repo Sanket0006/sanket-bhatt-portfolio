@@ -8,6 +8,7 @@ type HeroProps = {
   name: string;
   roleLine: string;
   availability: string;
+  statusNote?: string;
   intro: string;
   email: string;
   github: string;
@@ -15,7 +16,7 @@ type HeroProps = {
   cvHref?: string;
 };
 
-export function Hero({ name, roleLine, availability, intro, email, github, linkedin, cvHref }: HeroProps) {
+export function Hero({ name, roleLine, availability, statusNote, intro, email, github, linkedin, cvHref }: HeroProps) {
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -26,10 +27,20 @@ export function Hero({ name, roleLine, availability, intro, email, github, linke
         transition={{ duration: 0.5 }}
         className="mx-auto w-full max-w-6xl"
       >
-        {availability && (
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-accent">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
-            {availability}
+        {(availability || statusNote) && (
+          <div className="mb-5 flex flex-wrap items-center gap-2">
+            {availability && (
+              <div className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-accent">
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden />
+                {availability}
+              </div>
+            )}
+            {statusNote && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/40 bg-amber-500/10 px-4 py-1.5 text-xs font-medium text-amber-700 dark:text-amber-300">
+                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" aria-hidden />
+                {statusNote}
+              </div>
+            )}
           </div>
         )}
 

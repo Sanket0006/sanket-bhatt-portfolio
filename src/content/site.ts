@@ -3,6 +3,8 @@ export const site = {
   role: "Computer Science Student",
   roleLine: "Computer Science student · University of Windsor",
   availability: "Seeking Summer 2027 co-op · Software / IT",
+  // Shown as an amber note beside the availability pill. Set to "" to hide it.
+  statusNote: "Under construction: this portfolio is still being built",
   location: "Windsor, Ontario, Canada",
   origin: "Ahmedabad, India",
   shortIntro:
