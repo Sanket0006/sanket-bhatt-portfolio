@@ -39,10 +39,6 @@ export const metadata: Metadata = {
     "Portfolio",
   ],
   authors: [{ name: site.name }],
-  icons: {
-    icon: "/brand-mark.webp",
-    shortcut: "/brand-mark.webp",
-  },
   openGraph: {
     title: `${site.name} | ${site.role}`,
     description: site.shortIntro,
