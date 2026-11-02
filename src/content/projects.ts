@@ -29,7 +29,7 @@ export const projects: Project[] = [
     approach: "",
     tech: ["Drupal 7", "HTML/CSS", "Bootstrap"],
     github: "",
-    live: "",
+    live: "https://www.uwindsor.ca/isc",
     featured: true,
   },
   {
