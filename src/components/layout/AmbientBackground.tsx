@@ -35,14 +35,14 @@ export function AmbientBackground() {
       canvas!.width = w * dpr;
       canvas!.height = h * dpr;
       ctx!.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.max(30, Math.floor((w * h) / 40000));
+      const count = Math.max(14, Math.floor((w * h) / 110000));
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
         r: 0.5 + Math.random() * 1.4,
         vx: (Math.random() - 0.5) * 0.06,
         vy: (Math.random() - 0.5) * 0.06,
-        a: 0.2 + Math.random() * 0.5,
+        a: 0.1 + Math.random() * 0.25,
       }));
     }
 
@@ -85,21 +85,21 @@ export function AmbientBackground() {
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden>
       <div
-        className="absolute -top-1/4 left-1/2 h-[70vh] w-[90vw] -translate-x-1/2 rounded-full opacity-40 blur-[90px]"
+        className="absolute -top-1/4 left-1/2 h-[70vh] w-[90vw] -translate-x-1/2 rounded-full opacity-25 blur-[90px]"
         style={{
           background:
             "radial-gradient(circle, var(--accent) 0%, transparent 65%)",
         }}
       />
       <div
-        className="absolute bottom-0 right-0 h-[50vh] w-[60vw] rounded-full opacity-30 blur-[90px]"
+        className="absolute bottom-0 right-0 h-[50vh] w-[60vw] rounded-full opacity-15 blur-[90px]"
         style={{
           background:
             "radial-gradient(circle, var(--accent-2) 0%, transparent 65%)",
         }}
       />
       {!prefersReducedMotion && (
-        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-70" />
+        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-60" />
       )}
     </div>
   );

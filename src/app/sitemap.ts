@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/content/projects";
+import { site } from "@/content/site";
 
 const siteUrl = "https://www.sanketbhatt.com";
 
@@ -11,10 +12,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/work",
     "/experience",
     "/education",
-    "/music",
     "/extras",
     "/contact",
-  ].map((path) => ({
+  ]
+    .concat(site.features.music ? ["/music"] : [])
+    .map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified: new Date(),
   }));

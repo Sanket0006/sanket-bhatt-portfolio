@@ -3,8 +3,8 @@ export const site = {
   role: "Computer Science Student",
   roleLine: "Computer Science student · University of Windsor",
   availability: "Seeking Summer 2027 co-op · Software / IT",
-  // Shown as an amber note beside the availability pill. Set to "" to hide it.
-  statusNote: "Under construction: this portfolio is still being built",
+  // Amber note beside the availability pill. Set text here to show it, "" to hide it.
+  statusNote: "",
   location: "Windsor, Ontario, Canada",
   origin: "Ahmedabad, India",
   shortIntro:
@@ -17,6 +17,10 @@ export const site = {
     spotify:
       "https://open.spotify.com/artist/1VACsWTrn2zGETTrijTl0z?si=lRrB42oaTxKC2kicAt6q9Q",
     youtube: "https://www.youtube.com/@Sanket_Bhatt",
+  },
+  // Pages that exist but are hidden from the public. Flip to true to publish.
+  features: {
+    music: false,
   },
   nav: [
     { label: "About", href: "/about" },

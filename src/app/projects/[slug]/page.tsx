@@ -93,9 +93,11 @@ export default async function ProjectPage({
           )}
         </div>
 
-        <div className="relative mt-14 aspect-video w-full overflow-hidden rounded-2xl glass">
-          {imageUrl && <Image src={imageUrl} alt="" fill className="object-cover" />}
-        </div>
+        {imageUrl && (
+          <div className="relative mt-14 aspect-video w-full overflow-hidden rounded-2xl glass">
+            <Image src={imageUrl} alt="" fill className="object-cover" />
+          </div>
+        )}
 
         <div className="mt-14 space-y-10">
           <div>

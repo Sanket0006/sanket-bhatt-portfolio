@@ -81,13 +81,6 @@ body {
   background: var(--muted);
 }
 
-.text-gradient {
-  background: linear-gradient(120deg, var(--foreground) 30%, var(--accent-2) 75%, var(--accent) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
 .glass {
   background: var(--surface);
   border: 1px solid var(--surface-border);

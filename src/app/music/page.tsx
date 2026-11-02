@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Reveal } from "@/components/ui/Reveal";
+import { site } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Music",
@@ -7,6 +9,8 @@ export const metadata: Metadata = {
 };
 
 export default function MusicPage() {
+  if (!site.features.music) notFound();
+
   return (
     <section className="flex min-h-[80vh] flex-col items-center justify-center px-5 text-center sm:px-8">
       <Reveal direction="up">

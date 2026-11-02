@@ -13,6 +13,8 @@ export type Project = {
   image?: string;
 };
 
+// Empty strings and empty arrays are hidden from the page, so a project can
+// be listed before it has links, a cover image, or a full write-up.
 // Keep the slug URL-friendly (lowercase, hyphenated).
 export const projects: Project[] = [
   {
@@ -31,52 +33,20 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: "project-one",
-    title: "[TODO: Project One Title]",
-    summary: "[TODO: one-line description of what it does]",
-    description: "[TODO: 2-3 sentence overview of the project]",
-    problem: "[TODO: what problem this project solves]",
-    approach: "[TODO: how you built it / key technical decisions]",
-    tech: ["[TODO: e.g. Next.js]", "[TODO: e.g. PostgreSQL]"],
-    github: "[TODO: GitHub URL]",
-    live: "[TODO: live demo URL]",
+    slug: "portfolio-website",
+    title: "This Portfolio",
+    summary:
+      "A multi-page portfolio with statically generated pages, light and dark themes, and all content kept in typed data files.",
+    description:
+      "Built from scratch with Next.js, React and TypeScript, styled with Tailwind CSS, and deployed on Vercel from GitHub. It started as a static HTML/CSS/JS music page and was rebuilt as a multi-page site.",
+    problem:
+      "I wanted one place where recruiters and professors can see who I am and what I've built, and that I can keep up to date myself.",
+    approach:
+      "Pages are statically generated with the Next.js App Router. All copy lives in typed content files, so updating the site never means touching components. Accessibility basics (semantic headings, visible focus states, labelled icon links, reduced-motion support) and performance fixes were handled along the way.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel"],
+    github: "https://github.com/Sanket0006/sanket-bhatt-portfolio",
+    live: "https://www.sanketbhatt.com",
     featured: true,
-  },
-  {
-    slug: "project-two",
-    title: "[TODO: Project Two Title]",
-    summary: "[TODO: one-line description of what it does]",
-    description: "[TODO: 2-3 sentence overview of the project]",
-    problem: "[TODO: what problem this project solves]",
-    approach: "[TODO: how you built it / key technical decisions]",
-    tech: ["[TODO: e.g. Python]", "[TODO: e.g. TensorFlow]"],
-    github: "[TODO: GitHub URL]",
-    live: "[TODO: live demo URL]",
-    featured: true,
-  },
-  {
-    slug: "project-three",
-    title: "[TODO: Project Three Title]",
-    summary: "[TODO: one-line description of what it does]",
-    description: "[TODO: 2-3 sentence overview of the project]",
-    problem: "[TODO: what problem this project solves]",
-    approach: "[TODO: how you built it / key technical decisions]",
-    tech: ["[TODO]", "[TODO]"],
-    github: "[TODO: GitHub URL]",
-    live: "[TODO: live demo URL]",
-    featured: false,
-  },
-  {
-    slug: "project-four",
-    title: "[TODO: Project Four Title]",
-    summary: "[TODO: one-line description of what it does]",
-    description: "[TODO: 2-3 sentence overview of the project]",
-    problem: "[TODO: what problem this project solves]",
-    approach: "[TODO: how you built it / key technical decisions]",
-    tech: ["[TODO]", "[TODO]"],
-    github: "[TODO: GitHub URL]",
-    live: "[TODO: live demo URL]",
-    featured: false,
   },
 ];
 

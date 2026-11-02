@@ -5,13 +5,12 @@ import { Reveal } from "@/components/ui/Reveal";
 import type { Project } from "@/content/projects";
 
 const validLink = (href: string) => Boolean(href) && !href.startsWith("[TODO");
-const isReal = (p: Project) => !p.title.startsWith("[TODO");
 
 const cardClass =
   "flex h-full flex-col justify-between rounded-2xl glass p-6 transition-[transform,border-color] duration-200 ease-out hover:-translate-y-0.5 hover:border-accent";
 
 export function SelectedProjects({ projects }: { projects: Project[] }) {
-  const real = projects.filter(isReal).slice(0, 2);
+  const real = projects.slice(0, 3);
 
   return (
     <section id="projects" className="scroll-mt-24 px-5 py-20 sm:px-8">

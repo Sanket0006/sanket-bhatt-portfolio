@@ -1,8 +1,7 @@
 import { Code2, Layers, Wrench, BookOpen, type LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { Marquee } from "@/components/ui/Marquee";
-import { TiltCard } from "@/components/ui/TiltCard";
+import { Card } from "@/components/ui/Card";
 import type { SkillGroup } from "@/content/skills";
 
 const ICONS: Record<string, LucideIcon> = {
@@ -13,8 +12,6 @@ const ICONS: Record<string, LucideIcon> = {
 };
 
 export function Skills({ skillGroups }: { skillGroups: SkillGroup[] }) {
-  const marqueeItems = [...new Set(skillGroups.flatMap((g) => g.items))];
-
   return (
     <section id="skills" className="scroll-mt-24 px-5 py-24 sm:px-8">
       <div className="mx-auto max-w-6xl">
@@ -29,7 +26,7 @@ export function Skills({ skillGroups }: { skillGroups: SkillGroup[] }) {
             const Icon = ICONS[group.title] ?? Code2;
             return (
               <Reveal key={group.title} direction="up" delay={i * 0.08}>
-                <TiltCard className="h-full">
+                <Card className="h-full">
                   <div className="p-6">
                     <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/15 text-accent">
                       <Icon size={18} />
@@ -45,17 +42,12 @@ export function Skills({ skillGroups }: { skillGroups: SkillGroup[] }) {
                       ))}
                     </ul>
                   </div>
-                </TiltCard>
+                </Card>
               </Reveal>
             );
           })}
         </div>
 
-        {marqueeItems.length > 0 && (
-          <Reveal direction="up">
-            <Marquee items={marqueeItems} />
-          </Reveal>
-        )}
       </div>
     </section>
   );

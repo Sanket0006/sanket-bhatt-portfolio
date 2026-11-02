@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { TiltCard } from "@/components/ui/TiltCard";
+import { Card } from "@/components/ui/Card";
 import type { Project } from "@/content/projects";
 
 export function Projects({ projects }: { projects: Project[] }) {
@@ -13,7 +13,7 @@ export function Projects({ projects }: { projects: Project[] }) {
         <SectionHeading
           eyebrow="Selected work"
           title="Projects"
-          description="Edit these in src/content/projects.ts. Until then, placeholder cards are shown."
+          description="Things I have built and worked on."
         />
 
         <div className="grid gap-6 sm:grid-cols-2">
@@ -21,24 +21,18 @@ export function Projects({ projects }: { projects: Project[] }) {
             const imageUrl = project.image;
             return (
               <Reveal key={project.slug} direction="up" delay={i * 0.06}>
-                <TiltCard>
+                <Card>
                   <Link href={`/projects/${project.slug}`} className="block">
-                    <div className="relative aspect-[16/10] overflow-hidden">
-                      {imageUrl ? (
+                    {imageUrl && (
+                      <div className="relative aspect-[16/10] overflow-hidden">
                         <Image
                           src={imageUrl}
                           alt=""
                           fill
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                      ) : (
-                        <div className="absolute inset-0 flex items-center justify-center overflow-hidden bg-gradient-to-br from-accent/25 via-transparent to-accent-2/25">
-                          <span className="font-display text-5xl font-medium text-foreground/15 transition-transform duration-500 group-hover:scale-110">
-                            0{i + 1}
-                          </span>
-                        </div>
-                      )}
-                    </div>
+                      </div>
+                    )}
                     <div className="p-6">
                       <div className="mb-2 flex items-start justify-between gap-3">
                         <h3 className="font-display text-lg font-medium">
@@ -64,7 +58,7 @@ export function Projects({ projects }: { projects: Project[] }) {
                       </div>
                     </div>
                   </Link>
-                </TiltCard>
+                </Card>
               </Reveal>
             );
           })}

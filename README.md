@@ -21,8 +21,8 @@ src/
     work/                # /work: project list (cards link to /projects/[slug])
     experience/          # /experience: work history
     education/           # /education: transcript + certificate links live here
-    music/               # /music: "coming soon"
-    extras/              # /extras: music + aviation, linked as one nav item
+    music/               # /music: built but HIDDEN (404) until site.features.music is true
+    extras/              # /extras: music + aviation (Music card appears only when the music page is published)
     contact/             # /contact
     projects/[slug]/     # project detail pages
     not-found.tsx        # custom 404 ("Lost in the clouds")
@@ -36,7 +36,7 @@ src/
     home/      # landing-page-only sections: SelectedProjects,
                # ExperienceSnapshot, Stack (condensed previews, not used
                # on the dedicated /work, /experience, /skills pages)
-    ui/        # shared building blocks (Reveal, TiltCard, MagneticButton, …)
+    ui/        # shared building blocks (Reveal, Card, SectionHeading, …)
   content/     # ALL site content, this is what you edit
 ```
 
@@ -48,7 +48,7 @@ Everything is in `src/content/`:
 
 | File | What it controls |
 |---|---|
-| `site.ts` | Name, hero copy, availability line, email, social links, nav, quick facts, Formspree ID |
+| `site.ts` | Name, hero copy, availability line, amber status note (`statusNote`), `features` flags (e.g. publish the Music page), email, social links, nav, quick facts, Formspree ID |
 | `about.ts` | Bio paragraphs, photo path |
 | `projects.ts` | The 4 project cards + their detail pages |
 | `skills.ts` | Skill groups (Languages, Frameworks, Tools, Currently Learning) |
@@ -83,9 +83,10 @@ Opens at `http://localhost:3000`. Not required day-to-day, the normal workflow i
 ## Content checklist (TODO)
 
 - [ ] **About** → your photo (`src/content/about.ts` → `photoUrl`)
-- [ ] **Projects** → the 4 generic placeholder projects still need real title/summary/tech/links, or delete them if you don't need that many slots. ISC Website is real but still missing `tech`, `github`/`live` (hidden until filled), and `problem`/`approach` (hidden until filled)
+- [ ] **Projects** → ISC Website has no `github`/`live` link and no `problem`/`approach` write-up yet (all hidden until filled). Add more projects to `src/content/projects.ts` as you build them; anything left empty is simply not shown
 - [ ] **Extras** → Stratosphere page URL (`src/content/extras.ts` → `href`)
-- [ ] **Contact** → Formspree form ID (`src/content/site.ts` → `formspreeId`) so the contact form actually sends
+- [ ] **Contact** → Formspree form ID (`src/content/site.ts` → `formspreeId`). Until it is set, the contact form is hidden and only the email and social links show
+- [ ] **Music** → when ready, set `features.music` to `true` in `src/content/site.ts` to publish `/music` (and its card on `/extras`)
 - [ ] **Transcript** → drop the PDF at `public/transcript.pdf`
 - [ ] **CV** → drop the PDF at `public/cv.pdf` (the CV buttons stay hidden until it exists)
 

@@ -44,7 +44,7 @@ export function Hero({ name, roleLine, availability, statusNote, intro, email, g
           </div>
         )}
 
-        <h1 className="font-display text-5xl font-medium tracking-tight text-gradient sm:text-7xl">
+        <h1 className="font-display text-5xl font-medium tracking-tight sm:text-7xl">
           {name}
         </h1>
 

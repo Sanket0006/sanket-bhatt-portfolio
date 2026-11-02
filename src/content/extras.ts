@@ -1,15 +1,19 @@
+import { site } from "@/content/site";
+
 export type ExtraEntry = {
   name: string;
   description: string;
   href: string;
+  hidden?: boolean;
 };
 
-export const extras: ExtraEntry[] = [
+export const allExtras: ExtraEntry[] = [
   {
     name: "Music",
     description:
       "I make melodic bass and progressive electronic music under my own name, just for fun.",
     href: "/music",
+    hidden: !site.features.music,
   },
   {
     name: "Stratosphere",
@@ -19,3 +23,5 @@ export const extras: ExtraEntry[] = [
     href: "",
   },
 ];
+
+export const extras = allExtras.filter((e) => !e.hidden);

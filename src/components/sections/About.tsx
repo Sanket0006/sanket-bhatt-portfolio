@@ -14,25 +14,14 @@ export function About({ bioParagraphs, photoUrl, quickFacts }: AboutProps) {
       <div className="mx-auto max-w-6xl">
         <SectionHeading eyebrow="About" title="A bit about me" />
 
-        <div className="grid gap-10 md:grid-cols-[280px_1fr] md:gap-14">
-          <Reveal direction="right">
-            <div className="relative aspect-square w-full max-w-xs overflow-hidden rounded-2xl glass">
-              {photoUrl ? (
+        <div className={photoUrl ? "grid gap-10 md:grid-cols-[280px_1fr] md:gap-14" : "max-w-3xl"}>
+          {photoUrl && (
+            <Reveal direction="right">
+              <div className="relative aspect-square w-full max-w-xs overflow-hidden rounded-2xl glass">
                 <Image src={photoUrl} alt="" fill className="object-cover" />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center p-6 text-center text-sm text-muted">
-                  [TODO: Add your photo. Drop a file in /public and set photoUrl in src/content/about.ts]
-                </div>
-              )}
-              <Image
-                src="/brand-mark.webp"
-                alt=""
-                width={64}
-                height={64}
-                className="absolute bottom-4 right-4 rounded-full opacity-60"
-              />
-            </div>
-          </Reveal>
+              </div>
+            </Reveal>
+          )}
 
           <Reveal direction="up" delay={0.1}>
             <div className="space-y-5 leading-relaxed text-muted">

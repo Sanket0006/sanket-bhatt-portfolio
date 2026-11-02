@@ -11,9 +11,8 @@ import {
 } from "@/components/ui/BrandIcons";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { MagneticButton } from "@/components/ui/MagneticButton";
 
-type Status = "idle" | "sending" | "sent" | "error" | "not-configured";
+type Status = "idle" | "sending" | "sent" | "error";
 
 type ContactProps = {
   email: string;
@@ -41,10 +40,7 @@ export function Contact({ email, social, formspreeId }: ContactProps) {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (!formspreeId) {
-      setStatus("not-configured");
-      return;
-    }
+    if (!formspreeId) return;
 
     const form = e.currentTarget;
     const data = new FormData(form);
@@ -76,7 +72,8 @@ export function Contact({ email, social, formspreeId }: ContactProps) {
           description="Open to new projects, collaborations, or just a chat. Reach out any time."
         />
 
-        <div className="grid gap-12 md:grid-cols-2">
+        <div className={formspreeId ? "grid gap-12 md:grid-cols-2" : "max-w-xl"}>
+          {formspreeId && (
           <Reveal direction="up">
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -116,14 +113,14 @@ export function Contact({ email, social, formspreeId }: ContactProps) {
                 />
               </div>
 
-              <MagneticButton
-                className="bg-foreground text-background hover:opacity-90 disabled:pointer-events-none disabled:opacity-50"
+              <button
+                type="submit"
+                disabled={status === "sending"}
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:pointer-events-none disabled:opacity-50"
               >
-                <span className="flex items-center gap-2">
-                  <Send size={14} />
-                  {status === "sending" ? "Sending…" : "Send message"}
-                </span>
-              </MagneticButton>
+                <Send size={14} />
+                {status === "sending" ? "Sending…" : "Send message"}
+              </button>
 
               {status === "sent" && (
                 <p className="text-sm text-accent-2">Thanks! I&apos;ll get back to you soon.</p>
@@ -133,16 +130,9 @@ export function Contact({ email, social, formspreeId }: ContactProps) {
                   Something went wrong. Email me directly instead.
                 </p>
               )}
-              {status === "not-configured" && (
-                <p className="text-sm text-muted">
-                  [TODO: this form isn&apos;t wired up yet. Add your
-                  Formspree form ID to <code>formspreeId</code> in{" "}
-                  <code>src/content/site.ts</code>.] In the meantime, email
-                  me directly below.
-                </p>
-              )}
             </form>
           </Reveal>
+          )}
 
           <Reveal direction="up" delay={0.1}>
             <div className="flex h-full flex-col justify-between gap-8 rounded-2xl glass p-8">

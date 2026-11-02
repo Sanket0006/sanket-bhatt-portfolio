@@ -1,7 +1,7 @@
 import { Briefcase } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { TiltCard } from "@/components/ui/TiltCard";
+import { Card } from "@/components/ui/Card";
 import type { ExperienceEntry } from "@/content/experience";
 
 type ExperienceProps = {
@@ -21,7 +21,7 @@ export function Experience({ experience }: ExperienceProps) {
         <div className="space-y-5">
           {experience.map((entry, i) => (
             <Reveal key={entry.title} direction="up" delay={i * 0.08}>
-              <TiltCard>
+              <Card>
                 <div className="flex items-start gap-5 p-6">
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent/15 text-accent">
                     <Briefcase size={17} />
@@ -62,7 +62,7 @@ export function Experience({ experience }: ExperienceProps) {
                     )}
                   </div>
                 </div>
-              </TiltCard>
+              </Card>
             </Reveal>
           ))}
         </div>
